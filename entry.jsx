@@ -9,5 +9,5 @@ document.addEventListener('DOMContentLoaded',()=>{
   const middlewares = [thunk];
   let preloadedState = {};
   const root = document.getElementById('root');
-  ReactDOM.render(<Root store={createStore(RootReducer, preloadedState, applyMiddleware(...middlewares))}/>);
+  ReactDOM.render(<Root store={createStore(RootReducer, preloadedState, applyMiddleware(...middlewares))}/>, root);
 });
