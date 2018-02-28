@@ -21366,7 +21366,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var App = function App() {
   return _react2.default.createElement(
     'div',
-    null,
+    { className: 'screen' },
     _react2.default.createElement(_chat_view2.default, { currentUser: 'Rob' }),
     _react2.default.createElement(_chat_view2.default, { currentUser: 'Laura' })
   );
@@ -21471,7 +21471,11 @@ var ChatView = function (_React$Component) {
     key: "render",
     value: function render() {
       console.log(this.props);
-      return _react2.default.createElement("div", { className: "chat-view" });
+      return _react2.default.createElement(
+        "div",
+        { className: "chat-view" },
+        this.props.currentUser
+      );
     }
   }]);
 

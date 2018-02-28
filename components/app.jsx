@@ -3,7 +3,7 @@ import ChatView from './chat_view';
 
 const App = () => {
   return(
-    <div>
+    <div className="screen">
       <ChatView currentUser="Rob"/>
       <ChatView currentUser="Laura"/>
     </div>
