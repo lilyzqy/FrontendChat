@@ -21474,7 +21474,11 @@ var ChatView = function (_React$Component) {
       return _react2.default.createElement(
         "div",
         { className: "chat-view" },
-        this.props.currentUser
+        _react2.default.createElement(
+          "p",
+          null,
+          this.props.currentUser
+        )
       );
     }
   }]);
