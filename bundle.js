@@ -21558,7 +21558,16 @@ var InputBar = function (_React$Component) {
     // }
 
     value: function render() {
-      return _react2.default.createElement("section", { className: "input-bar" });
+      return _react2.default.createElement(
+        "section",
+        { className: "input-bar-container" },
+        _react2.default.createElement("input", { className: "input-bar" }),
+        _react2.default.createElement(
+          "a",
+          { className: "send-button" },
+          _react2.default.createElement("i", { className: "fas fa-paper-plane" })
+        )
+      );
     }
   }]);
 
