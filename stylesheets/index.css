@@ -1,10 +1,21 @@
 html{
   background-color: #f7edee;
-  color: #4F4546
+  color: #4F4546;
+  font-family: sans-serif;
 }
 p{
   -webkit-margin-before: 0;
   -webkit-margin-after: 0;
+}
+
+textarea{
+  color: inherit;
+  font-size: 12px;
+}
+
+textarea:focus{
+  outline-color: white;
+  border: 1px solid white
 }
 
 .screen{
@@ -38,8 +49,8 @@ p{
 .chat-receiver{
   display: flex;
   position: absolute;
-    margin-top: 7px;
-    margin-left: 5px;
+  margin-top: 7px;
+  margin-left: 10px;
 }
 
 .to{
@@ -47,7 +58,7 @@ p{
 }
 
 .conversation-title{
-  margin-left: 5px;
+  margin-left: 8px;
 }
 
 .message-list{
@@ -55,6 +66,7 @@ p{
 }
 
 .input-bar-container{
+  overflow: hidden;
   border: 1px solid #f7edee;
   display: flex;
   height: 40px;
@@ -63,7 +75,16 @@ p{
 
 .input-bar{
   width: 90%;
-  border: none
+  border: none;
+  resize: none;
+  box-sizing: border-box;
+  height: 40px;
+  padding: 12px 20px;
+}
+
+.input-bar::placeholder{
+  color: #A18684;
+  font-size: 11px;
 }
 
 .send-button{
@@ -74,6 +95,10 @@ p{
   width: 28px;
   display: block;
   border-radius: 15px;
+}
+
+.send-button :hover{
+  cursor: pointer;
 }
 
 .fa-paper-plane{

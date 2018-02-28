@@ -21561,7 +21561,10 @@ var InputBar = function (_React$Component) {
       return _react2.default.createElement(
         "section",
         { className: "input-bar-container" },
-        _react2.default.createElement("input", { className: "input-bar" }),
+        _react2.default.createElement("textarea", {
+          className: "input-bar",
+          placeholder: "Type your message here..."
+        }),
         _react2.default.createElement(
           "a",
           { className: "send-button" },
