@@ -46,3 +46,10 @@ p{
 .conversation-title{
   margin-left: 5px;
 }
+
+.input-bar{
+  background-color: #fff7f7;
+  display: block;
+  height: 30px;
+  align-self: flex-end;
+}

@@ -18,6 +18,7 @@ class ChatView extends React.Component {
             <p className="conversation-title">{this.props.chattingTo}</p>
           </section>
         </header>
+        <InputBar />
       </section>
     );
   }
