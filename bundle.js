@@ -19837,6 +19837,9 @@ exports.default = (0, _redux.combineReducers)({
 "use strict";
 
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 var sessionReducer = function sessionReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments[1];
@@ -19848,6 +19851,8 @@ var sessionReducer = function sessionReducer() {
       return state;
   }
 };
+
+exports.default = sessionReducer;
 
 /***/ }),
 /* 56 */
@@ -19884,6 +19889,23 @@ exports.default = (0, _redux.combineReducers)({
 "use strict";
 
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var userReducer = function userReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments[1];
+
+  //keep the original state untouchable
+  Object.freeze(state);
+  switch (action.type) {
+    default:
+      return state;
+  }
+};
+
+exports.default = userReducer;
+
 /***/ }),
 /* 58 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -19913,6 +19935,23 @@ var messageReducer = function messageReducer() {
 
 "use strict";
 
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var errorReducer = function errorReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments[1];
+
+  //keep the original state untouchable
+  Object.freeze(state);
+  switch (action.type) {
+    default:
+      return state;
+  }
+};
+
+exports.default = errorReducer;
 
 /***/ }),
 /* 60 */
@@ -21309,6 +21348,26 @@ function verifySubselectors(mapStateToProps, mapDispatchToProps, mergeProps, dis
 
 "use strict";
 
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var App = function App() {
+  return _react2.default.createElement(
+    'div',
+    null,
+    'nothing here'
+  );
+};
+
+exports.default = App;
 
 /***/ }),
 /* 76 */
