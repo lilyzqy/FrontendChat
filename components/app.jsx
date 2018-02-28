@@ -4,8 +4,8 @@ import ChatView from './chat_view';
 const App = () => {
   return(
     <div className="screen">
-      <ChatView currentUser="Rob"/>
-      <ChatView currentUser="Laura"/>
+      <ChatView chattingTo="Rob"/>
+      <ChatView chattingTo="Laura"/>
     </div>
   );
 };

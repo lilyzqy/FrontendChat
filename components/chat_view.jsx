@@ -1,4 +1,6 @@
 import React from 'react';
+import InputBar from './input_bar';
+import MessageList from './messages/message_list';
 
 class ChatView extends React.Component {
   constructor(props){
@@ -10,8 +12,9 @@ class ChatView extends React.Component {
     console.log(this.props);
     return (
       <div className="chat-view">
-        <p>{this.props.currentUser}</p>
-
+        <div>
+          <p className="chat-title">To: {this.props.chattingTo}</p>
+        </div>
       </div>
     );
   }

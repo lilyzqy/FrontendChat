@@ -21367,8 +21367,8 @@ var App = function App() {
   return _react2.default.createElement(
     'div',
     { className: 'screen' },
-    _react2.default.createElement(_chat_view2.default, { currentUser: 'Rob' }),
-    _react2.default.createElement(_chat_view2.default, { currentUser: 'Laura' })
+    _react2.default.createElement(_chat_view2.default, { chattingTo: 'Rob' }),
+    _react2.default.createElement(_chat_view2.default, { chattingTo: 'Laura' })
   );
 };
 
@@ -21450,6 +21450,14 @@ var _react = __webpack_require__(2);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _input_bar = __webpack_require__(79);
+
+var _input_bar2 = _interopRequireDefault(_input_bar);
+
+var _message_list = __webpack_require__(80);
+
+var _message_list2 = _interopRequireDefault(_message_list);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -21468,16 +21476,21 @@ var ChatView = function (_React$Component) {
   }
 
   _createClass(ChatView, [{
-    key: "render",
+    key: 'render',
     value: function render() {
       console.log(this.props);
       return _react2.default.createElement(
-        "div",
-        { className: "chat-view" },
+        'div',
+        { className: 'chat-view' },
         _react2.default.createElement(
-          "p",
+          'div',
           null,
-          this.props.currentUser
+          _react2.default.createElement(
+            'p',
+            { className: 'chat-title' },
+            'To: ',
+            this.props.chattingTo
+          )
         )
       );
     }
@@ -21487,6 +21500,20 @@ var ChatView = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = ChatView;
+
+/***/ }),
+/* 79 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/***/ }),
+/* 80 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
 
 /***/ })
 /******/ ]);
