@@ -42,14 +42,14 @@ textarea:focus{
 .chat-header{
   text-align: center;
   background-color: #fff7f7;
-  height: 30px;
+  height: 40px;
   vertical-align: middle;
 }
 
 .chat-receiver{
   display: flex;
   position: absolute;
-  margin-top: 7px;
+  margin-top: 12px;
   margin-left: 10px;
 }
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import InputBar from './input_bar';
+import InputBarContainer from './input/input_bar_container';
 import MessageList from './messages/message_list';
 
 class ChatView extends React.Component {
@@ -9,7 +9,6 @@ class ChatView extends React.Component {
   }
 
   render(){
-    console.log(this.props);
     return (
       <section className="chat-view">
         <header className="chat-header">
@@ -19,7 +18,7 @@ class ChatView extends React.Component {
           </section>
         </header>
         <MessageList />
-        <InputBar />
+        <InputBarContainer currentUserId={this.props.currentUserId}/>
       </section>
     );
   }

@@ -1948,8 +1948,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 document.addEventListener('DOMContentLoaded', function () {
   var middlewares = [_reduxThunk2.default];
   var preloadedState = {};
+  var store = (0, _redux.createStore)(_root_reducer2.default, preloadedState, _redux.applyMiddleware.apply(undefined, middlewares));
+  window.getState = store.getState;
   var root = document.getElementById('root');
-  _reactDom2.default.render(_react2.default.createElement(_root2.default, { store: (0, _redux.createStore)(_root_reducer2.default, preloadedState, _redux.applyMiddleware.apply(undefined, middlewares)) }), root);
+  _reactDom2.default.render(_react2.default.createElement(_root2.default, { store: store }), root);
 });
 
 /***/ }),
@@ -19918,6 +19920,10 @@ exports.default = userReducer;
 "use strict";
 
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
 var _message_actions = __webpack_require__(77);
 
 var messageReducer = function messageReducer() {
@@ -19933,6 +19939,8 @@ var messageReducer = function messageReducer() {
       return state;
   }
 };
+
+exports.default = messageReducer;
 
 /***/ }),
 /* 59 */
@@ -21372,8 +21380,8 @@ var App = function App() {
   return _react2.default.createElement(
     'div',
     { className: 'screen' },
-    _react2.default.createElement(_chat_view2.default, { chattingTo: 'Rob' }),
-    _react2.default.createElement(_chat_view2.default, { chattingTo: 'Laura' })
+    _react2.default.createElement(_chat_view2.default, { currentUserId: '1', chattingTo: 'Rob' }),
+    _react2.default.createElement(_chat_view2.default, { currentUserId: '2', chattingTo: 'Laura' })
   );
 };
 
@@ -21455,9 +21463,9 @@ var _react = __webpack_require__(2);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _input_bar = __webpack_require__(79);
+var _input_bar_container = __webpack_require__(82);
 
-var _input_bar2 = _interopRequireDefault(_input_bar);
+var _input_bar_container2 = _interopRequireDefault(_input_bar_container);
 
 var _message_list = __webpack_require__(80);
 
@@ -21483,7 +21491,6 @@ var ChatView = function (_React$Component) {
   _createClass(ChatView, [{
     key: 'render',
     value: function render() {
-      console.log(this.props);
       return _react2.default.createElement(
         'section',
         { className: 'chat-view' },
@@ -21506,7 +21513,7 @@ var ChatView = function (_React$Component) {
           )
         ),
         _react2.default.createElement(_message_list2.default, null),
-        _react2.default.createElement(_input_bar2.default, null)
+        _react2.default.createElement(_input_bar_container2.default, { currentUserId: this.props.currentUserId })
       );
     }
   }]);
@@ -21517,69 +21524,7 @@ var ChatView = function (_React$Component) {
 exports.default = ChatView;
 
 /***/ }),
-/* 79 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(2);
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var InputBar = function (_React$Component) {
-  _inherits(InputBar, _React$Component);
-
-  function InputBar() {
-    _classCallCheck(this, InputBar);
-
-    return _possibleConstructorReturn(this, (InputBar.__proto__ || Object.getPrototypeOf(InputBar)).apply(this, arguments));
-  }
-
-  _createClass(InputBar, [{
-    key: "render",
-
-    // constructor(){
-    //
-    // }
-
-    value: function render() {
-      return _react2.default.createElement(
-        "section",
-        { className: "input-bar-container" },
-        _react2.default.createElement("textarea", {
-          className: "input-bar",
-          placeholder: "Type your message here..."
-        }),
-        _react2.default.createElement(
-          "a",
-          { className: "send-button" },
-          _react2.default.createElement("i", { className: "fas fa-paper-plane" })
-        )
-      );
-    }
-  }]);
-
-  return InputBar;
-}(_react2.default.Component);
-
-exports.default = InputBar;
-
-/***/ }),
+/* 79 */,
 /* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -21648,6 +21593,115 @@ var conversationReducer = function conversationReducer() {
 };
 
 exports.default = conversationReducer;
+
+/***/ }),
+/* 82 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _reactRedux = __webpack_require__(61);
+
+var _message_actions = __webpack_require__(77);
+
+var _input_bar = __webpack_require__(83);
+
+var _input_bar2 = _interopRequireDefault(_input_bar);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mapDTPs = function mapDTPs(dispatch) {
+  return {
+    createMessage: function createMessage(message) {
+      return dispatch((0, _message_actions.createMessage)(message));
+    }
+  };
+};
+
+exports.default = (0, _reactRedux.connect)(undefined, mapDTPs)(_input_bar2.default);
+
+/***/ }),
+/* 83 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var InputBar = function (_React$Component) {
+  _inherits(InputBar, _React$Component);
+
+  function InputBar() {
+    _classCallCheck(this, InputBar);
+
+    var _this = _possibleConstructorReturn(this, (InputBar.__proto__ || Object.getPrototypeOf(InputBar)).call(this));
+
+    _this.state = {
+      body: ""
+    };
+    return _this;
+  }
+
+  _createClass(InputBar, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.setState({ authorId: this.props.currentUserId });
+    }
+  }, {
+    key: "handleTyping",
+    value: function handleTyping() {
+      var _this2 = this;
+
+      console.log(this.state);
+      return function (e) {
+        _this2.setState({ body: e.currentTarget.value });
+      };
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return _react2.default.createElement(
+        "section",
+        { className: "input-bar-container" },
+        _react2.default.createElement("textarea", {
+          className: "input-bar",
+          onChange: this.handleTyping(),
+          placeholder: "Type your message here..." }),
+        _react2.default.createElement(
+          "a",
+          { className: "send-button", onClick: this.props.createMessage(this.state) },
+          _react2.default.createElement("i", { className: "fas fa-paper-plane" })
+        )
+      );
+    }
+  }]);
+
+  return InputBar;
+}(_react2.default.Component);
+
+exports.default = InputBar;
 
 /***/ })
 /******/ ]);
