@@ -1,4 +1,13 @@
-.screen {
+html{
+  background-color: #f7edee;
+  color: #4F4546
+}
+p{
+  -webkit-margin-before: 0;
+  -webkit-margin-after: 0;
+}
+
+.screen{
   display: flex;
   justify-content: space-around;
   align-items: stretch;
@@ -7,6 +16,7 @@
 }
 
 .chat-view{
+  overflow: hidden;
   background-color: #fcfcfc;
   height: 90vh;
   width: 45vw;
@@ -15,7 +25,24 @@
   box-shadow: 0 4px 8px 0 rgba(81, 6, 14, 0.2), 0 6px 20px 0 rgba(81, 6, 14, 0.19);
 }
 
-.chat-title{
+.chat-header{
   text-align: center;
   background-color: #fff7f7;
+  height: 30px;
+  vertical-align: middle;
+}
+
+.chat-receiver{
+  display: flex;
+  position: absolute;
+    margin-top: 7px;
+    margin-left: 5px;
+}
+
+.to{
+  color: #A18684;
+}
+
+.conversation-title{
+  margin-left: 5px;
 }

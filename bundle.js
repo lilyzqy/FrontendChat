@@ -19875,11 +19875,16 @@ var _message_reducer = __webpack_require__(58);
 
 var _message_reducer2 = _interopRequireDefault(_message_reducer);
 
+var _conversation_reducer = __webpack_require__(81);
+
+var _conversation_reducer2 = _interopRequireDefault(_conversation_reducer);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = (0, _redux.combineReducers)({
   users: _user_reducer2.default,
-  messages: _message_reducer2.default
+  messages: _message_reducer2.default,
+  conversations: _conversation_reducer2.default
 });
 
 /***/ }),
@@ -21480,16 +21485,24 @@ var ChatView = function (_React$Component) {
     value: function render() {
       console.log(this.props);
       return _react2.default.createElement(
-        'div',
+        'section',
         { className: 'chat-view' },
         _react2.default.createElement(
-          'div',
-          null,
+          'header',
+          { className: 'chat-header' },
           _react2.default.createElement(
-            'p',
-            { className: 'chat-title' },
-            'To: ',
-            this.props.chattingTo
+            'section',
+            { className: 'chat-receiver' },
+            _react2.default.createElement(
+              'p',
+              { className: 'to' },
+              'To:'
+            ),
+            _react2.default.createElement(
+              'p',
+              { className: 'conversation-title' },
+              this.props.chattingTo
+            )
           )
         )
       );
@@ -21514,6 +21527,30 @@ exports.default = ChatView;
 
 "use strict";
 
+
+/***/ }),
+/* 81 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var conversationReducer = function conversationReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments[1];
+
+  //keep the original state untouchable
+  Object.freeze(state);
+  switch (action.type) {
+    default:
+      return state;
+  }
+};
+
+exports.default = conversationReducer;
 
 /***/ })
 /******/ ]);

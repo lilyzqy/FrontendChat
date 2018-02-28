@@ -11,11 +11,14 @@ class ChatView extends React.Component {
   render(){
     console.log(this.props);
     return (
-      <div className="chat-view">
-        <div>
-          <p className="chat-title">To: {this.props.chattingTo}</p>
-        </div>
-      </div>
+      <section className="chat-view">
+        <header className="chat-header">
+          <section className="chat-receiver">
+            <p className="to">To:</p>
+            <p className="conversation-title">{this.props.chattingTo}</p>
+          </section>
+        </header>
+      </section>
     );
   }
 }
