@@ -21612,9 +21612,9 @@ var InputBar = function (_React$Component) {
     value: function handleSend() {
       var _this3 = this;
 
-      return function () {
+      return function (e) {
         _this3.props.createMessage(_this3.state);
-        document.getElementById("form").reset();
+        e.currentTarget.parentElement.reset();
       };
     }
   }, {
@@ -21622,7 +21622,7 @@ var InputBar = function (_React$Component) {
     value: function render() {
       return _react2.default.createElement(
         "form",
-        { className: "input-bar-container", id: "form" },
+        { className: "input-bar-container" },
         _react2.default.createElement("textarea", {
           className: "input-bar",
           onChange: this.handleTyping(),

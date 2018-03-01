@@ -20,17 +20,15 @@ class InputBar extends React.Component {
   }
 
   handleSend(){
-    return()=>{
+    return(e)=>{
       this.props.createMessage(this.state);
-      document.getElementById("form").reset();
+      e.currentTarget.parentElement.reset();
     };
   }
 
-
-
   render(){
     return (
-      <form className="input-bar-container" id="form">
+      <form className="input-bar-container">
         <textarea
           className="input-bar"
           onChange={this.handleTyping()}
