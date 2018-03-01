@@ -19,22 +19,24 @@ class InputBar extends React.Component {
     };
   }
 
-  handleSubmit(){
+  handleSend(){
     return()=>{
       this.props.createMessage(this.state);
       document.getElementById("form").reset();
     };
   }
 
+
+
   render(){
     return (
-      <form className="input-bar-container" id="form" >
+      <form className="input-bar-container" id="form">
         <textarea
           className="input-bar"
           onChange={this.handleTyping()}
           placeholder="Type your message here...">
         </textarea>
-        <a className="send-button" onClick={this.handleSubmit()}>
+        <a className="send-button" onClick={this.handleSend()}>
           <i className="fas fa-paper-plane"></i>
         </a>
       </form>

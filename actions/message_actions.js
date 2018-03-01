@@ -3,10 +3,12 @@ export const RECEIVE_MESSAGE = 'RECEIVE_MESSAGE';
 
 //will be a thunk action that send message to the backend and dispatch the action that receive the message
 export const createMessage = message => dispatch => {
-  //can add API call here if backend is available.
-  return ()=>{
+  //this promise can change into API call when backend is available.
+  new Promise(function(resolve, reject) {
+  setTimeout(() => resolve(1), 1000);
+}).then(()=>{
     dispatch(receiveMessage(message));
-  };
+  });
 };
 
 const receiveMessage = message =>({
