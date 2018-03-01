@@ -32,6 +32,7 @@ class InputBar extends React.Component {
   waitForEnter(e){
     if(e.code === "Enter"){
       let body = this.state.body;
+      //remove the return note from the message body
       this.setState({body:body.slice(0, body.length - 1)});
       this.props.createMessage(this.state);
       this.myInput.parentElement.reset();

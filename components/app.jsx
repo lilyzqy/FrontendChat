@@ -4,8 +4,9 @@ import ChatView from './chat_view';
 const App = () => {
   return(
     <div className="screen">
-      <ChatView currentUserId="1" chattingTo="Rob"/>
-      <ChatView currentUserId="2" chattingTo="Laura"/>
+      //currentUserId will be available at the state in realapp
+      <ChatView currentUserId="1" conversationId="1"/>
+      <ChatView currentUserId="2" conversationId="2"/>
     </div>
   );
 };

@@ -20005,8 +20005,21 @@ exports.default = messageReducer;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+var INITIALSTATE = {
+  1: {
+    title: "Rob",
+    conversationPic: "",
+    menberIds: [2]
+  },
+  2: {
+    title: "Laura",
+    conversationPic: "",
+    memberId: [1]
+  }
+};
+
 var conversationReducer = function conversationReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : INITIALSTATE;
   var action = arguments[1];
 
   //keep the original state untouchable
@@ -21438,8 +21451,9 @@ var App = function App() {
   return _react2.default.createElement(
     'div',
     { className: 'screen' },
-    _react2.default.createElement(_chat_view2.default, { currentUserId: '1', chattingTo: 'Rob' }),
-    _react2.default.createElement(_chat_view2.default, { currentUserId: '2', chattingTo: 'Laura' })
+    '//currentUserId will be available at the state in realapp',
+    _react2.default.createElement(_chat_view2.default, { currentUserId: '1', conversationId: '1' }),
+    _react2.default.createElement(_chat_view2.default, { currentUserId: '2', conversationId: '2' })
   );
 };
 
@@ -21631,6 +21645,7 @@ var InputBar = function (_React$Component) {
     value: function waitForEnter(e) {
       if (e.code === "Enter") {
         var body = this.state.body;
+        //remove the return note from the message body
         this.setState({ body: body.slice(0, body.length - 1) });
         this.props.createMessage(this.state);
         this.myInput.parentElement.reset();
