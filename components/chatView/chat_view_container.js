@@ -3,9 +3,8 @@ import { connect } from "react-redux";
 import ChatView from "./chat_view";
 
 const mapSTPs = ({entities}, ownProps) =>{
-  console.log(ownProps);
   return {
-    conversation: entities
+    conversation: entities.conversations[ownProps.conversationId]
   };
 };
 

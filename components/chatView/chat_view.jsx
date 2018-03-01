@@ -14,7 +14,7 @@ class ChatView extends React.Component {
         <header className="chat-header">
           <section className="chat-receiver">
             <p className="to">To:</p>
-            <p className="conversation-title">{this.props.chattingTo}</p>
+            <p className="conversation-title">{this.props.conversation.title}</p>
           </section>
         </header>
         <MessageList />

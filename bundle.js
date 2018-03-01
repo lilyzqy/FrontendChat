@@ -19952,6 +19952,17 @@ exports.default = (0, _redux.combineReducers)({
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+var INITIALSTATE = {
+  1: {
+    username: "Laura",
+    profilePic: "http://res.cloudinary.com/dreamhousesf/image/upload/v1519947536/224084626-girl-profile-picture_2_v5ypsg.jpg"
+  },
+  2: {
+    username: "Rob",
+    profilePic: "http://res.cloudinary.com/dreamhousesf/image/upload/v1519947436/IMG_9757_2_rimvrw.jpg"
+  }
+};
+
 var userReducer = function userReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments[1];
@@ -21730,9 +21741,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var mapSTPs = function mapSTPs(_ref, ownProps) {
   var entities = _ref.entities;
 
-  console.log(ownProps);
   return {
-    conversation: entities
+    conversation: entities.conversations[ownProps.conversationId]
   };
 };
 
@@ -21800,7 +21810,7 @@ var ChatView = function (_React$Component) {
             _react2.default.createElement(
               'p',
               { className: 'conversation-title' },
-              this.props.chattingTo
+              this.props.conversation.title
             )
           )
         ),
