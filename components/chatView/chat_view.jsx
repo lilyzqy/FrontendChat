@@ -1,6 +1,6 @@
 import React from 'react';
-import InputBarContainer from './input/input_bar_container';
-import MessageList from './messages/message_list';
+import InputBarContainer from '../input/input_bar_container';
+import MessageList from '../messages/message_list';
 
 class ChatView extends React.Component {
   constructor(props){
