@@ -31,6 +31,8 @@ class InputBar extends React.Component {
 //eventlistener function
   waitForEnter(e){
     if(e.code === "Enter"){
+      let body = this.state.body;
+      this.setState({body:body.slice(0, body.length - 1)});
       this.props.createMessage(this.state);
       this.myInput.parentElement.reset();
     }
