@@ -6,54 +6,49 @@ class InputBar extends React.Component {
     this.state = {
       body:""
     };
+    this.waitForEnter = this.waitForEnter.bind(this);
   }
 
   componentDidMount(){
     this.setState({authorId:this.props.currentUserId});
   }
 
+//update the state (for message object) when typing in the input bar
   handleTyping(){
-    // console.log(this.state);
     return (e)=>{
       this.setState({body:e.currentTarget.value});
     };
   }
 
+//send message when click on the send icon
   handleSubmit(){
     return(e)=>{
       this.props.createMessage(this.state);
-      console.log(e.currentTarget);
       e.currentTarget.parentElement.reset();
     };
   }
 
-  returnSend(){
-    return(e)=>{
-      let that = this;
-      if(e.code === "Enter"){
-        console.log("?");
-        that.handleSubmit();
-      }
-    };
-  }
-
+//eventlistener function
   waitForEnter(e){
     if(e.code === "Enter"){
+      this.props.createMessage(this.state);
       this.myInput.parentElement.reset();
     }
   }
 
+//listen to key when input bar is focused
   onFocus(){
     return()=>{
-      console.log(this.myInput);
-      this.myInput.addEventListener("keyup",this.waitForEnter.bind(this));
+      //this.myInput is the ref of textarea,
+      //using ref instead of id is for differentiate the reuseable components
+      this.myInput.addEventListener("keyup",this.waitForEnter);
     };
   }
 
+//remove listener to avoid fire both input bars
   onBlur(){
     return()=>{
-      console.log(this.myInput);
-      this.myInput.removeEventListener("keyup",this.waitForEnter.bind(this));
+      this.myInput.removeEventListener("keyup",this.waitForEnter);
     };
   }
 

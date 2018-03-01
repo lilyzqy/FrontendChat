@@ -21589,6 +21589,7 @@ var InputBar = function (_React$Component) {
     _this.state = {
       body: ""
     };
+    _this.waitForEnter = _this.waitForEnter.bind(_this);
     return _this;
   }
 
@@ -21597,16 +21598,21 @@ var InputBar = function (_React$Component) {
     value: function componentDidMount() {
       this.setState({ authorId: this.props.currentUserId });
     }
+
+    //update the state (for message object) when typing in the input bar
+
   }, {
     key: "handleTyping",
     value: function handleTyping() {
       var _this2 = this;
 
-      // console.log(this.state);
       return function (e) {
         _this2.setState({ body: e.currentTarget.value });
       };
     }
+
+    //send message when click on the send icon
+
   }, {
     key: "handleSubmit",
     value: function handleSubmit() {
@@ -21614,54 +21620,50 @@ var InputBar = function (_React$Component) {
 
       return function (e) {
         _this3.props.createMessage(_this3.state);
-        console.log(e.currentTarget);
         e.currentTarget.parentElement.reset();
       };
     }
-  }, {
-    key: "returnSend",
-    value: function returnSend() {
-      var _this4 = this;
 
-      return function (e) {
-        var that = _this4;
-        if (e.code === "Enter") {
-          console.log("?");
-          that.handleSubmit();
-        }
-      };
-    }
+    //eventlistener function
+
   }, {
     key: "waitForEnter",
     value: function waitForEnter(e) {
       if (e.code === "Enter") {
+        this.props.createMessage(this.state);
         this.myInput.parentElement.reset();
       }
     }
+
+    //listen to key when input bar is focused
+
   }, {
     key: "onFocus",
     value: function onFocus() {
-      var _this5 = this;
+      var _this4 = this;
 
       return function () {
-        console.log(_this5.myInput);
-        _this5.myInput.addEventListener("keyup", _this5.waitForEnter.bind(_this5));
+        //this.myInput is the ref of textarea,
+        //using ref instead of id is for differentiate the reuseable components
+        _this4.myInput.addEventListener("keyup", _this4.waitForEnter);
       };
     }
+
+    //remove listener to avoid fire both input bars
+
   }, {
     key: "onBlur",
     value: function onBlur() {
-      var _this6 = this;
+      var _this5 = this;
 
       return function () {
-        console.log(_this6.myInput);
-        _this6.myInput.removeEventListener("keyup", _this6.waitForEnter.bind(_this6));
+        _this5.myInput.removeEventListener("keyup", _this5.waitForEnter);
       };
     }
   }, {
     key: "render",
     value: function render() {
-      var _this7 = this;
+      var _this6 = this;
 
       return _react2.default.createElement(
         "form",
@@ -21669,7 +21671,7 @@ var InputBar = function (_React$Component) {
         _react2.default.createElement("textarea", {
           className: "input-bar",
           ref: function ref(textarea) {
-            _this7.myInput = textarea;
+            _this6.myInput = textarea;
           },
           onFocus: this.onFocus(),
           onBlur: this.onBlur(),
