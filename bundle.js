@@ -21680,18 +21680,28 @@ var InputBar = function (_React$Component) {
       };
     }
   }, {
+    key: "handleSubmit",
+    value: function handleSubmit() {
+      var _this3 = this;
+
+      return function (e) {
+        _this3.props.createMessage(_this3.state);
+        console.log(e);
+      };
+    }
+  }, {
     key: "render",
     value: function render() {
       return _react2.default.createElement(
-        "section",
-        { className: "input-bar-container" },
+        "form",
+        { className: "input-bar-container", onSubmit: this.handleSubmit() },
         _react2.default.createElement("textarea", {
           className: "input-bar",
           onChange: this.handleTyping(),
           placeholder: "Type your message here..." }),
         _react2.default.createElement(
           "a",
-          { className: "send-button", onClick: this.props.createMessage(this.state) },
+          { className: "send-button", onClick: this.handleSubmit() },
           _react2.default.createElement("i", { className: "fas fa-paper-plane" })
         )
       );
