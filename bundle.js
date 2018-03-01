@@ -21608,28 +21608,76 @@ var InputBar = function (_React$Component) {
       };
     }
   }, {
-    key: "handleSend",
-    value: function handleSend() {
+    key: "handleSubmit",
+    value: function handleSubmit() {
       var _this3 = this;
 
       return function (e) {
         _this3.props.createMessage(_this3.state);
+        console.log(e.currentTarget);
         e.currentTarget.parentElement.reset();
+      };
+    }
+  }, {
+    key: "returnSend",
+    value: function returnSend() {
+      var _this4 = this;
+
+      return function (e) {
+        var that = _this4;
+        if (e.code === "Enter") {
+          console.log("?");
+          that.handleSubmit();
+        }
+      };
+    }
+  }, {
+    key: "waitForEnter",
+    value: function waitForEnter(e) {
+      if (e.code === "Enter") {
+        this.myInput.parentElement.reset();
+      }
+    }
+  }, {
+    key: "onFocus",
+    value: function onFocus() {
+      var _this5 = this;
+
+      return function () {
+        console.log(_this5.myInput);
+        _this5.myInput.addEventListener("keyup", _this5.waitForEnter.bind(_this5));
+      };
+    }
+  }, {
+    key: "onBlur",
+    value: function onBlur() {
+      var _this6 = this;
+
+      return function () {
+        console.log(_this6.myInput);
+        _this6.myInput.removeEventListener("keyup", _this6.waitForEnter.bind(_this6));
       };
     }
   }, {
     key: "render",
     value: function render() {
+      var _this7 = this;
+
       return _react2.default.createElement(
         "form",
         { className: "input-bar-container" },
         _react2.default.createElement("textarea", {
           className: "input-bar",
+          ref: function ref(textarea) {
+            _this7.myInput = textarea;
+          },
+          onFocus: this.onFocus(),
+          onBlur: this.onBlur(),
           onChange: this.handleTyping(),
           placeholder: "Type your message here..." }),
         _react2.default.createElement(
           "a",
-          { className: "send-button", onClick: this.handleSend() },
+          { className: "send-button", onClick: this.handleSubmit() },
           _react2.default.createElement("i", { className: "fas fa-paper-plane" })
         )
       );

@@ -19,10 +19,41 @@ class InputBar extends React.Component {
     };
   }
 
-  handleSend(){
+  handleSubmit(){
     return(e)=>{
       this.props.createMessage(this.state);
+      console.log(e.currentTarget);
       e.currentTarget.parentElement.reset();
+    };
+  }
+
+  returnSend(){
+    return(e)=>{
+      let that = this;
+      if(e.code === "Enter"){
+        console.log("?");
+        that.handleSubmit();
+      }
+    };
+  }
+
+  waitForEnter(e){
+    if(e.code === "Enter"){
+      this.myInput.parentElement.reset();
+    }
+  }
+
+  onFocus(){
+    return()=>{
+      console.log(this.myInput);
+      this.myInput.addEventListener("keyup",this.waitForEnter.bind(this));
+    };
+  }
+
+  onBlur(){
+    return()=>{
+      console.log(this.myInput);
+      this.myInput.removeEventListener("keyup",this.waitForEnter.bind(this));
     };
   }
 
@@ -31,10 +62,15 @@ class InputBar extends React.Component {
       <form className="input-bar-container">
         <textarea
           className="input-bar"
+          ref={textarea => {
+            this.myInput = textarea;
+          }}
+          onFocus={this.onFocus()}
+          onBlur={this.onBlur()}
           onChange={this.handleTyping()}
           placeholder="Type your message here...">
         </textarea>
-        <a className="send-button" onClick={this.handleSend()}>
+        <a className="send-button" onClick={this.handleSubmit()}>
           <i className="fas fa-paper-plane"></i>
         </a>
       </form>
