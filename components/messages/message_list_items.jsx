@@ -11,8 +11,12 @@ class MessageListItems extends React.Component {
     }else if((today - messageDate) === 1){
       let clock = moment(time).format("HH:mm");
       return "Yesterday " + clock;
+    }else if(today.slice(0,5) === messageDate.slice(0,5)){
+      return moment(time).format("MMM DD, HH:mm");
+    }else{
+      return moment(time).format("YYYY-MM-DD, HH:mm");
     }
-  }
+      }
 
   render(){
     let message = this.props.message;

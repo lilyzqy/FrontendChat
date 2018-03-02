@@ -38417,6 +38417,10 @@ var MessageListItems = function (_React$Component) {
       } else if (today - messageDate === 1) {
         var clock = (0, _moment2.default)(time).format("HH:mm");
         return "Yesterday " + clock;
+      } else if (today.slice(0, 5) === messageDate.slice(0, 5)) {
+        return (0, _moment2.default)(time).format("MMM DD, HH:mm");
+      } else {
+        return (0, _moment2.default)(time).format("YYYY-MM-DD, HH:mm");
       }
     }
   }, {
