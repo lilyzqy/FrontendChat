@@ -132,6 +132,7 @@ textarea:focus{
 .message-container{
   display: flex;
   flex-direction: column;
+  margin-bottom: 10px;
 }
 
 .left{
@@ -169,6 +170,13 @@ textarea:focus{
 .message-body{
   font-size: 14px;
   margin: 10px;
+}
+
+.time-stamp{
+  font-size: 10px;
+  align-self: center;
+  color: #d1bdbc;
+  margin-bottom: 5px;
 }
 
 

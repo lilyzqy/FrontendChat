@@ -38407,11 +38407,24 @@ var MessageListItems = function (_React$Component) {
   }
 
   _createClass(MessageListItems, [{
+    key: 'handleTimeStamp',
+    value: function handleTimeStamp(time) {
+      var today = (0, _moment2.default)().format("YYYYMMDD");
+      var messageDate = (0, _moment2.default)(time).format("YYYYMMDD");
+      console.log(today - messageDate);
+      if (messageDate === today) {
+        return (0, _moment2.default)(time).format("HH:mm");
+      } else if (today - messageDate === 1) {
+        var clock = (0, _moment2.default)(time).format("HH:mm");
+        return "Yesterday " + clock;
+      }
+    }
+  }, {
     key: 'render',
     value: function render() {
       var message = this.props.message;
       var body = message.body;
-      var timeStamp = void 0;
+      var timeStamp = this.handleTimeStamp(message.createdAt);
       var author = this.props.users[message.authorId];
       var messageBoxClass = void 0;
       var profilePic = void 0;
@@ -38427,7 +38440,11 @@ var MessageListItems = function (_React$Component) {
       return _react2.default.createElement(
         'li',
         { className: 'message-container' },
-        timeStamp,
+        _react2.default.createElement(
+          'p',
+          { className: 'time-stamp' },
+          timeStamp
+        ),
         _react2.default.createElement(
           'div',
           { className: messageBoxClass },
