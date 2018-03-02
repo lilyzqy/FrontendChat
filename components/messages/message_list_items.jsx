@@ -19,10 +19,13 @@ class MessageListItems extends React.Component {
       profilePic = (<img src={author.profilePic} className="profile-pic"></img>);
     }
     return(
-      <li className={messageBoxClass}>
-        {profilePic}
-        <div className={bubbleClass}>
-          <p className="message-body">{body}</p>
+      <li className="message-container">
+        {timeStamp}
+        <div className={messageBoxClass}>
+          {profilePic}
+          <div className={bubbleClass}>
+            <p className="message-body">{body}</p>
+          </div>
         </div>
       </li>
     );

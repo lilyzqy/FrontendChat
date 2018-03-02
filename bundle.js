@@ -38416,15 +38416,20 @@ var MessageListItems = function (_React$Component) {
       }
       return _react2.default.createElement(
         'li',
-        { className: messageBoxClass },
-        profilePic,
+        { className: 'message-container' },
+        timeStamp,
         _react2.default.createElement(
           'div',
-          { className: bubbleClass },
+          { className: messageBoxClass },
+          profilePic,
           _react2.default.createElement(
-            'p',
-            { className: 'message-body' },
-            body
+            'div',
+            { className: bubbleClass },
+            _react2.default.createElement(
+              'p',
+              { className: 'message-body' },
+              body
+            )
           )
         )
       );
