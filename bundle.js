@@ -21678,6 +21678,10 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _message_list_item = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./message_list_item\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+
+var _message_list_item2 = _interopRequireDefault(_message_list_item);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -21696,9 +21700,26 @@ var MessageList = function (_React$Component) {
   }
 
   _createClass(MessageList, [{
-    key: "render",
+    key: 'render',
     value: function render() {
-      return _react2.default.createElement("section", { className: "message-list" });
+      var _this2 = this;
+
+      var items = this.props.messages.map(function (message, idx) {
+        return _react2.default.createElement(_message_list_item2.default, {
+          key: idx,
+          message: message,
+          currentUserId: _this2.props.currentUserId
+        });
+      });
+      return _react2.default.createElement(
+        'section',
+        { className: 'message-list' },
+        _react2.default.createElement(
+          'ul',
+          null,
+          items
+        )
+      );
     }
   }]);
 
@@ -21787,9 +21808,9 @@ var _input_bar_container = __webpack_require__(79);
 
 var _input_bar_container2 = _interopRequireDefault(_input_bar_container);
 
-var _message_list = __webpack_require__(81);
+var _message_list_container = __webpack_require__(208);
 
-var _message_list2 = _interopRequireDefault(_message_list);
+var _message_list_container2 = _interopRequireDefault(_message_list_container);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -21832,7 +21853,7 @@ var ChatView = function (_React$Component) {
             )
           )
         ),
-        _react2.default.createElement(_message_list2.default, null),
+        _react2.default.createElement(_message_list_container2.default, { currentUserId: this.props.currentUserId }),
         _react2.default.createElement(_input_bar_container2.default, { currentUserId: this.props.currentUserId })
       );
     }
@@ -38333,6 +38354,34 @@ webpackContext.keys = function webpackContextKeys() {
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
 webpackContext.id = 207;
+
+/***/ }),
+/* 208 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _reactRedux = __webpack_require__(24);
+
+var _message_list = __webpack_require__(81);
+
+var _message_list2 = _interopRequireDefault(_message_list);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mapSTPs = function mapSTPs(_ref) {
+  var entities = _ref.entities;
+  return {
+    messages: entities.messages
+  };
+};
+
+exports.default = (0, _reactRedux.connect)(mapSTPs, undefined)(_message_list2.default);
 
 /***/ })
 /******/ ]);

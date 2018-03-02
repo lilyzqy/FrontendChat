@@ -1,6 +1,6 @@
 import React from 'react';
 import InputBarContainer from '../input/input_bar_container';
-import MessageList from '../messages/message_list';
+import MessageListContainer from '../messages/message_list_container';
 
 class ChatView extends React.Component {
   constructor(props){
@@ -17,7 +17,7 @@ class ChatView extends React.Component {
             <p className="conversation-title">{this.props.conversation.title}</p>
           </section>
         </header>
-        <MessageList />
+        <MessageListContainer currentUserId={this.props.currentUserId}/>
         <InputBarContainer currentUserId={this.props.currentUserId}/>
       </section>
     );
