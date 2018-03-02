@@ -38403,15 +38403,24 @@ var MessageListItems = function (_React$Component) {
       var body = message.body;
       var timeStamp = void 0;
       var author = this.props.users[message.authorId];
-      var className = this.props.currentUserId === message.authorId ? "message-box right" : "message-box left";
-      var profilePic = this.props.currentUserId === message.authorId ? undefined : _react2.default.createElement('img', { src: author.profilePic, className: 'profile-pic' });
+      var messageBoxClass = void 0;
+      var profilePic = void 0;
+      var bubbleClass = void 0;
+      if (this.props.currentUserId === message.authorId) {
+        messageBoxClass = "message-box right";
+        bubbleClass = "bubble right";
+      } else {
+        messageBoxClass = "message-box left";
+        bubbleClass = "bubble left";
+        profilePic = _react2.default.createElement('img', { src: author.profilePic, className: 'profile-pic' });
+      }
       return _react2.default.createElement(
         'li',
-        { className: className },
+        { className: messageBoxClass },
         profilePic,
         _react2.default.createElement(
           'p',
-          { className: 'message-bubble' },
+          { className: bubbleClass },
           body
         )
       );
