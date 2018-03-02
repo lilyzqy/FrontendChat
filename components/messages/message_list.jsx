@@ -5,18 +5,20 @@ import MessageListItems from './message_list_items';
 class MessageList extends React.Component{
   render(){
     let messages = this.props.messages;
-    let lastMessageTime = messages[messages.length -1];
-    console.log(lastMessageTime);
+    let lastMessage = messages[ messages.length - 1];
+    console.log(lastMessage);
     let items = messages.map((message,idx)=>(
         <MessageListItems
           key={idx}
           message={message}
           currentUserId={this.props.currentUserId}
+          users={this.props.users}
+          lastMessage={lastMessage}
           />
       ));
     return (
       <section className="message-list">
-        <ul>
+        <ul className="messages-ul">
           {items}
         </ul>
       </section>

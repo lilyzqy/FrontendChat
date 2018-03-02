@@ -1,3 +1,10 @@
+ul{
+  list-style: none;
+  -webkit-margin-before: 0;
+  -webkit-margin-after: 0;
+  -webkit-padding-start: 0;
+}
+
 html{
   background-color: #f7edee;
   color: #4F4546;
@@ -62,10 +69,6 @@ textarea:focus{
   margin-left: 8px;
 }
 
-.message-list{
-  height: auto;
-}
-
 .input-bar-container{
   overflow: hidden;
   border: 1px solid #f7edee;
@@ -109,8 +112,41 @@ textarea:focus{
   font-size: 14px;
 }
 
+.message-list{
+  height: 100%;
+  display: flex;
+}
+
+.messages-ul{
+  display: flex;
+  flex-direction: column;
+  width: 100%
+}
+
+.message-box{
+  display: flex;
+  flex-direction: row;
+  background-color: pink;
+  margin-top: 10px;
+}
+
+.left{
+  margin-left: 20px;
+  background-color:
+}
 
 
+.right{
+  align-self: flex-end;
+  margin-right: 20px;
+}
+
+.profile-pic{
+  display: block;
+  height: 30px;
+  width: 30px;
+  border-radius: 15px;
+}
 
 
 
