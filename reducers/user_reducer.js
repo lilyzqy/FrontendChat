@@ -9,7 +9,7 @@ const INITIALSTATE ={
   }
 };
 
-const userReducer = (state = {}, action) =>{
+const userReducer = (state = INITIALSTATE, action) =>{
   //keep the original state untouchable
   Object.freeze(state);
   switch (action.type){
