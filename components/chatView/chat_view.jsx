@@ -5,7 +5,6 @@ import MessageListContainer from '../messages/message_list_container';
 class ChatView extends React.Component {
   constructor(props){
     super(props);
-
   }
 
   render(){

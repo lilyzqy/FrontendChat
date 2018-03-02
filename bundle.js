@@ -36194,7 +36194,7 @@ Object.defineProperty(exports, "__esModule", {
 var _message_actions = __webpack_require__(25);
 
 var INITIALSTATE = [{
-  authorId: "1",
+  authorId: "2",
   body: "Welcome to ChatChat! Let's begin!",
   createdAt: "2018-03-01T20:45:23-08:00"
 }];
@@ -36229,12 +36229,12 @@ var INITIALSTATE = {
   1: {
     title: "Rob",
     conversationPic: "",
-    menberIds: [2]
+    memberIds: [2]
   },
   2: {
     title: "Laura",
     conversationPic: "",
-    memberId: [1]
+    memberIds: [1]
   }
 };
 
@@ -37702,7 +37702,8 @@ var mapSTPs = function mapSTPs(_ref, ownProps) {
   var entities = _ref.entities;
 
   return {
-    conversation: entities.conversations[ownProps.conversationId]
+    conversation: entities.conversations[ownProps.conversationId],
+    users: entities.users
   };
 };
 
@@ -38321,24 +38322,33 @@ var MessageList = function (_React$Component) {
   function MessageList() {
     _classCallCheck(this, MessageList);
 
-    return _possibleConstructorReturn(this, (MessageList.__proto__ || Object.getPrototypeOf(MessageList)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (MessageList.__proto__ || Object.getPrototypeOf(MessageList)).call(this));
+
+    _this.state = {
+      lastTimeStamp: ""
+    };
+    return _this;
   }
 
   _createClass(MessageList, [{
+    key: 'updateLastTimeStamp',
+    value: function updateLastTimeStamp(timeStamp) {
+      this.setState({ lastTimeStamp: timeStamp });
+    }
+  }, {
     key: 'render',
     value: function render() {
       var _this2 = this;
 
       var messages = this.props.messages;
-      var lastMessage = messages[messages.length - 1];
-      console.log(lastMessage);
       var items = messages.map(function (message, idx) {
         return _react2.default.createElement(_message_list_items2.default, {
           key: idx,
           message: message,
           currentUserId: _this2.props.currentUserId,
           users: _this2.props.users,
-          lastMessage: lastMessage
+          lastTimeStamp: _this2.state.lastTimeStamp,
+          updateLastTimeStamp: _this2.updateLastTimeStamp.bind(_this2)
         });
       });
       return _react2.default.createElement(

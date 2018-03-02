@@ -2,7 +2,7 @@ import { RECEIVE_MESSAGE } from '../actions/message_actions';
 
 const INITIALSTATE = [
   {
-    authorId:"1",
+    authorId:"2",
     body:"Welcome to ChatChat! Let's begin!",
     createdAt:"2018-03-01T20:45:23-08:00"
   }

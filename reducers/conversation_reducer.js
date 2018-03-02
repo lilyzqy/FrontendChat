@@ -2,12 +2,12 @@ const INITIALSTATE={
   1:{
     title:"Rob",
     conversationPic:"",
-    menberIds:[2]
+    memberIds:[2]
   },
   2:{
     title:"Laura",
     conversationPic:"",
-    memberId:[1]
+    memberIds:[1]
   }
 };
 
