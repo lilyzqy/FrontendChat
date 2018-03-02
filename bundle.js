@@ -19993,7 +19993,7 @@ var _message_actions = __webpack_require__(23);
 var INITIALSTATE = [{
   authorId: "1",
   body: "Welcome to ChatChat! Let's chat!",
-  createdAt: "03-01-2018 12:02"
+  createdAt: "2018-03-01T20:45:23-08:00"
 }];
 
 var messageReducer = function messageReducer() {
@@ -21560,7 +21560,7 @@ var InputBar = function (_React$Component) {
   }, {
     key: '_getTimeStamp',
     value: function _getTimeStamp() {
-      var timeStamp = (0, _moment2.default)().format("MM-DD-YYYY HH:mm");
+      var timeStamp = (0, _moment2.default)().format();
       this.setState({ createdAt: timeStamp });
     }
 

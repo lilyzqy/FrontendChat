@@ -15,7 +15,7 @@ class InputBar extends React.Component {
   }
 
   _getTimeStamp(){
-    let timeStamp = moment().format("MM-DD-YYYY HH:mm");
+    let timeStamp = moment().format();
     this.setState({createdAt: timeStamp});
   }
 

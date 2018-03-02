@@ -4,7 +4,7 @@ const INITIALSTATE = [
   {
     authorId:"1",
     body:"Welcome to ChatChat! Let's chat!",
-    createdAt:"03-01-2018 12:02"
+    createdAt:"2018-03-01T20:45:23-08:00"
   }
 ];
 
