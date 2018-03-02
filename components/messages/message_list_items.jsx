@@ -12,18 +12,18 @@ class MessageListItems extends React.Component {
     let bubbleClass;
     if(this.props.currentUserId === message.authorId){
       messageBoxClass = "message-box right";
-      bubbleClass = "bubble right";
+      bubbleClass = "right-bubble";
     }else{
       messageBoxClass = "message-box left";
-      bubbleClass = "bubble left";
+      bubbleClass = "left-bubble";
       profilePic = (<img src={author.profilePic} className="profile-pic"></img>);
     }
     return(
       <li className={messageBoxClass}>
         {profilePic}
-        <p className={bubbleClass}>
-          {body}
-        </p>
+        <div className={bubbleClass}>
+          <p className="message-body">{body}</p>
+        </div>
       </li>
     );
   }

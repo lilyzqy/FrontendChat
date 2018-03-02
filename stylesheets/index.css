@@ -73,7 +73,7 @@ textarea:focus{
   overflow: hidden;
   border: 1px solid #f7edee;
   display: flex;
-  height: 40px;
+  height: 50px;
   justify-content: space-between;
 }
 
@@ -126,19 +126,18 @@ textarea:focus{
 .message-box{
   display: flex;
   flex-direction: row;
-  background-color: pink;
   margin-top: 10px;
 }
 
+
 .left{
   margin-left: 20px;
-  background-color:
 }
 
 
 .right{
-  align-self: flex-end;
   margin-right: 20px;
+  align-self: flex-end;
 }
 
 .profile-pic{
@@ -146,8 +145,23 @@ textarea:focus{
   height: 30px;
   width: 30px;
   border-radius: 15px;
+  margin-right: 10px;
 }
 
+.left-bubble{
+  background-color:white;
+  border-radius: 25px;
+}
+
+.right-bubble{
+  border-radius: 25px;
+  background-color: #F25656
+}
+
+.message-body{
+  font-size: 14px;
+  margin: 10px;
+}
 
 
 

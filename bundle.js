@@ -36195,7 +36195,7 @@ var _message_actions = __webpack_require__(25);
 
 var INITIALSTATE = [{
   authorId: "1",
-  body: "Welcome to ChatChat! Let's chat!",
+  body: "Welcome to ChatChat! Let's begin!",
   createdAt: "2018-03-01T20:45:23-08:00"
 }];
 
@@ -38408,10 +38408,10 @@ var MessageListItems = function (_React$Component) {
       var bubbleClass = void 0;
       if (this.props.currentUserId === message.authorId) {
         messageBoxClass = "message-box right";
-        bubbleClass = "bubble right";
+        bubbleClass = "right-bubble";
       } else {
         messageBoxClass = "message-box left";
-        bubbleClass = "bubble left";
+        bubbleClass = "left-bubble";
         profilePic = _react2.default.createElement('img', { src: author.profilePic, className: 'profile-pic' });
       }
       return _react2.default.createElement(
@@ -38419,9 +38419,13 @@ var MessageListItems = function (_React$Component) {
         { className: messageBoxClass },
         profilePic,
         _react2.default.createElement(
-          'p',
+          'div',
           { className: bubbleClass },
-          body
+          _react2.default.createElement(
+            'p',
+            { className: 'message-body' },
+            body
+          )
         )
       );
     }
