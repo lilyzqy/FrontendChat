@@ -21678,9 +21678,9 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _message_list_item = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./message_list_item\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+var _message_list_items = __webpack_require__(209);
 
-var _message_list_item2 = _interopRequireDefault(_message_list_item);
+var _message_list_items2 = _interopRequireDefault(_message_list_items);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -21704,8 +21704,11 @@ var MessageList = function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
-      var items = this.props.messages.map(function (message, idx) {
-        return _react2.default.createElement(_message_list_item2.default, {
+      var messages = this.props.messages;
+      var lastMessageTime = messages[messages.length - 1];
+      console.log(lastMessageTime);
+      var items = messages.map(function (message, idx) {
+        return _react2.default.createElement(_message_list_items2.default, {
           key: idx,
           message: message,
           currentUserId: _this2.props.currentUserId
@@ -38382,6 +38385,62 @@ var mapSTPs = function mapSTPs(_ref) {
 };
 
 exports.default = (0, _reactRedux.connect)(mapSTPs, undefined)(_message_list2.default);
+
+/***/ }),
+/* 209 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _moment = __webpack_require__(86);
+
+var _moment2 = _interopRequireDefault(_moment);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var MessageListItems = function (_React$Component) {
+  _inherits(MessageListItems, _React$Component);
+
+  function MessageListItems() {
+    _classCallCheck(this, MessageListItems);
+
+    return _possibleConstructorReturn(this, (MessageListItems.__proto__ || Object.getPrototypeOf(MessageListItems)).apply(this, arguments));
+  }
+
+  _createClass(MessageListItems, [{
+    key: 'render',
+    value: function render() {
+      var message = this.props.message.body;
+      var timeStamp = void 0;
+      return _react2.default.createElement(
+        'li',
+        null,
+        message
+      );
+    }
+  }]);
+
+  return MessageListItems;
+}(_react2.default.Component);
+
+exports.default = MessageListItems;
 
 /***/ })
 /******/ ]);

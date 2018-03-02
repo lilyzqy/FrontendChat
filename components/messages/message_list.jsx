@@ -1,11 +1,14 @@
 import React from 'react';
 
-import MessageListItem from './message_list_item';
+import MessageListItems from './message_list_items';
 
 class MessageList extends React.Component{
   render(){
-    let items = this.props.messages.map((message,idx)=>(
-        <MessageListItem
+    let messages = this.props.messages;
+    let lastMessageTime = messages[messages.length -1];
+    console.log(lastMessageTime);
+    let items = messages.map((message,idx)=>(
+        <MessageListItems
           key={idx}
           message={message}
           currentUserId={this.props.currentUserId}
