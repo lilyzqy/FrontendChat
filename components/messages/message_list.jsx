@@ -1,20 +1,10 @@
 import React from 'react';
 
-import MessageListItems from './message_list_items';
+import MessageListItemsContainer from './message_list_items_container';
 
 class MessageList extends React.Component{
-  constructor(){
-    super();
-    this.state = {
-      lastTimeStamp: ""
-    };
-  }
-
-  updateLastTimeStamp(timeStamp){
-    this.setState({lastTimeStamp:timeStamp});
-  }
-
   render(){
+    console.log(this.state.lastTimeStamp);
     let messages = this.props.messages;
     let items = messages.map((message,idx)=>(
         <MessageListItems
@@ -22,8 +12,6 @@ class MessageList extends React.Component{
           message={message}
           currentUserId={this.props.currentUserId}
           users={this.props.users}
-          lastTimeStamp={this.state.lastTimeStamp}
-          updateLastTimeStamp={this.updateLastTimeStamp.bind(this)}
           />
       ));
     return (

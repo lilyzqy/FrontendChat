@@ -36137,12 +36137,17 @@ var _conversation_reducer = __webpack_require__(181);
 
 var _conversation_reducer2 = _interopRequireDefault(_conversation_reducer);
 
+var _timestamp_reducer = __webpack_require__(209);
+
+var _timestamp_reducer2 = _interopRequireDefault(_timestamp_reducer);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = (0, _redux.combineReducers)({
   users: _user_reducer2.default,
   messages: _message_reducer2.default,
-  conversations: _conversation_reducer2.default
+  conversations: _conversation_reducer2.default,
+  timeStamp: _timestamp_reducer2.default
 });
 
 /***/ }),
@@ -38280,8 +38285,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var mapSTPs = function mapSTPs(_ref) {
   var entities = _ref.entities;
   return {
-    messages: entities.messages,
-    users: entities.users
+    messages: entities.messages
   };
 };
 
@@ -38304,9 +38308,9 @@ var _react = __webpack_require__(2);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _message_list_items = __webpack_require__(206);
+var _message_list_items_container = __webpack_require__(208);
 
-var _message_list_items2 = _interopRequireDefault(_message_list_items);
+var _message_list_items_container2 = _interopRequireDefault(_message_list_items_container);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -38322,33 +38326,22 @@ var MessageList = function (_React$Component) {
   function MessageList() {
     _classCallCheck(this, MessageList);
 
-    var _this = _possibleConstructorReturn(this, (MessageList.__proto__ || Object.getPrototypeOf(MessageList)).call(this));
-
-    _this.state = {
-      lastTimeStamp: ""
-    };
-    return _this;
+    return _possibleConstructorReturn(this, (MessageList.__proto__ || Object.getPrototypeOf(MessageList)).apply(this, arguments));
   }
 
   _createClass(MessageList, [{
-    key: 'updateLastTimeStamp',
-    value: function updateLastTimeStamp(timeStamp) {
-      this.setState({ lastTimeStamp: timeStamp });
-    }
-  }, {
     key: 'render',
     value: function render() {
       var _this2 = this;
 
+      console.log(this.state.lastTimeStamp);
       var messages = this.props.messages;
       var items = messages.map(function (message, idx) {
-        return _react2.default.createElement(_message_list_items2.default, {
+        return _react2.default.createElement(MessageListItems, {
           key: idx,
           message: message,
           currentUserId: _this2.props.currentUserId,
-          users: _this2.props.users,
-          lastTimeStamp: _this2.state.lastTimeStamp,
-          updateLastTimeStamp: _this2.updateLastTimeStamp.bind(_this2)
+          users: _this2.props.users
         });
       });
       return _react2.default.createElement(
@@ -38411,11 +38404,23 @@ var MessageListItems = function (_React$Component) {
     value: function handleTimeStamp(time) {
       var today = (0, _moment2.default)().format("YYYYMMDD");
       var messageDate = (0, _moment2.default)(time).format("YYYYMMDD");
-      console.log(today - messageDate);
+      var _props = this.props,
+          lastTimeStamp = _props.lastTimeStamp,
+          updateLastTimeStamp = _props.updateLastTimeStamp;
+
+      var lastTimeStampTime = (0, _moment2.default)(lastTimeStamp).format("HHmm");
+      console.log(lastTimeStampTime);
       if (messageDate === today) {
-        return (0, _moment2.default)(time).format("HH:mm");
+        if (lastTimeStamp === "" || lastTimeStampTime <= (0, _moment2.default)(time).format("HHmm") - 2) {
+          setTimeout(updateLastTimeStamp(time), 100);
+          return (0, _moment2.default)(time).format("HH:mm");
+        } else {
+          return "";
+        }
       } else if (today - messageDate === 1) {
         var clock = (0, _moment2.default)(time).format("HH:mm");
+        setTimeout(updateLastTimeStamp(time), 100);
+        // updateLastTimeStamp(time);
         return "Yesterday " + clock;
       } else if (today.slice(0, 5) === messageDate.slice(0, 5)) {
         return (0, _moment2.default)(time).format("MMM DD, HH:mm");
@@ -38500,6 +38505,82 @@ var thunk = createThunkMiddleware();
 thunk.withExtraArgument = createThunkMiddleware;
 
 exports['default'] = thunk;
+
+/***/ }),
+/* 208 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _reactRedux = __webpack_require__(9);
+
+var _message_list_items = __webpack_require__(206);
+
+var _message_list_items2 = _interopRequireDefault(_message_list_items);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mapSTPs = function mapSTPs(_ref) {
+  var entities = _ref.entities;
+  return {
+    users: entities.users
+  };
+};
+
+exports.default = (0, _reactRedux.connect)(mapSTPs, undefined)(_message_list_items2.default);
+
+/***/ }),
+/* 209 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _timestamp_actions = __webpack_require__(210);
+
+var timeStampReducer = function timeStampReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "";
+  var action = arguments[1];
+
+  //keep the original state untouchable
+  Object.freeze(state);
+  switch (action.type) {
+    case _timestamp_actions.UPDATE_TIME_STAMP:
+      return action.timeStamp;
+    default:
+      return state;
+  }
+};
+
+exports.default = timeStampReducer;
+
+/***/ }),
+/* 210 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var UPDATE_TIME_STAMP = exports.UPDATE_TIME_STAMP = "UPDATE_TIME_STAMP";
+
+var updateTimeStamp = exports.updateTimeStamp = function updateTimeStamp(timeStamp) {
+  return {
+    type: UPDATE_TIME_STAMP,
+    timeStamp: timeStamp
+  };
+};
 
 /***/ })
 /******/ ]);

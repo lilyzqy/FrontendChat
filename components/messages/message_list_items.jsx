@@ -5,11 +5,20 @@ class MessageListItems extends React.Component {
   handleTimeStamp(time){
     let today = moment().format("YYYYMMDD");
     let messageDate = moment(time).format("YYYYMMDD");
-    console.log(today-messageDate);
+    let { lastTimeStamp, updateLastTimeStamp } = this.props;
+    let lastTimeStampTime = moment(lastTimeStamp).format("HHmm");
+    console.log(lastTimeStampTime);
     if( messageDate === today){
-      return moment(time).format("HH:mm");
+      if( lastTimeStamp === "" ||lastTimeStampTime <=  moment(time).format("HHmm") - 2){
+        setTimeout(updateLastTimeStamp(time),100);
+        return moment(time).format("HH:mm");
+      }else{
+        return "";
+      }
     }else if((today - messageDate) === 1){
       let clock = moment(time).format("HH:mm");
+      setTimeout(updateLastTimeStamp(time),100);
+      // updateLastTimeStamp(time);
       return "Yesterday " + clock;
     }else if(today.slice(0,5) === messageDate.slice(0,5)){
       return moment(time).format("MMM DD, HH:mm");
