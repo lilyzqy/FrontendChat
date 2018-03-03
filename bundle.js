@@ -36136,10 +36136,6 @@ var _conversation_reducer = __webpack_require__(181);
 
 var _conversation_reducer2 = _interopRequireDefault(_conversation_reducer);
 
-var _timestamp_reducer = __webpack_require__(209);
-
-var _timestamp_reducer2 = _interopRequireDefault(_timestamp_reducer);
-
 var _typing_indicator_reducer = __webpack_require__(211);
 
 var _typing_indicator_reducer2 = _interopRequireDefault(_typing_indicator_reducer);
@@ -36150,7 +36146,6 @@ exports.default = (0, _redux.combineReducers)({
   users: _user_reducer2.default,
   messages: _message_reducer2.default,
   conversations: _conversation_reducer2.default,
-  timeStamp: _timestamp_reducer2.default,
   typingIndicator: _typing_indicator_reducer2.default
 });
 
@@ -38522,8 +38517,6 @@ Object.defineProperty(exports, "__esModule", {
 
 var _reactRedux = __webpack_require__(9);
 
-var _timestamp_actions = __webpack_require__(210);
-
 var _message_list_items = __webpack_require__(206);
 
 var _message_list_items2 = _interopRequireDefault(_message_list_items);
@@ -38534,69 +38527,15 @@ var mapSTPs = function mapSTPs(_ref) {
   var entities = _ref.entities;
   return {
     users: entities.users,
-    timeStamp: entities.timeStamp
+    messages: entities.messages
   };
 };
 
-var mapDTPs = function mapDTPs(dispatch) {
-  return {
-    updateTimeStamp: function updateTimeStamp(newTimeStamp) {
-      return dispatch((0, _timestamp_actions.updateTimeStamp)(newTimeStamp));
-    }
-  };
-};
-
-exports.default = (0, _reactRedux.connect)(mapSTPs, mapDTPs)(_message_list_items2.default);
+exports.default = (0, _reactRedux.connect)(mapSTPs, undefined)(_message_list_items2.default);
 
 /***/ }),
-/* 209 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _timestamp_actions = __webpack_require__(210);
-
-var timeStampReducer = function timeStampReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "";
-  var action = arguments[1];
-
-  //keep the original state untouchable
-  Object.freeze(state);
-  switch (action.type) {
-    case _timestamp_actions.UPDATE_TIME_STAMP:
-      return action.timeStamp;
-    default:
-      return state;
-  }
-};
-
-exports.default = timeStampReducer;
-
-/***/ }),
-/* 210 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var UPDATE_TIME_STAMP = exports.UPDATE_TIME_STAMP = "UPDATE_TIME_STAMP";
-
-var updateTimeStamp = exports.updateTimeStamp = function updateTimeStamp(timeStamp) {
-  return {
-    type: UPDATE_TIME_STAMP,
-    timeStamp: timeStamp
-  };
-};
-
-/***/ }),
+/* 209 */,
+/* 210 */,
 /* 211 */
 /***/ (function(module, exports, __webpack_require__) {
 
