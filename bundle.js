@@ -36141,13 +36141,18 @@ var _timestamp_reducer = __webpack_require__(209);
 
 var _timestamp_reducer2 = _interopRequireDefault(_timestamp_reducer);
 
+var _typing_indicator_reducer = __webpack_require__(211);
+
+var _typing_indicator_reducer2 = _interopRequireDefault(_typing_indicator_reducer);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = (0, _redux.combineReducers)({
   users: _user_reducer2.default,
   messages: _message_reducer2.default,
   conversations: _conversation_reducer2.default,
-  timeStamp: _timestamp_reducer2.default
+  timeStamp: _timestamp_reducer2.default,
+  typingIndicator: _typing_indicator_reducer2.default
 });
 
 /***/ }),
@@ -38579,6 +38584,54 @@ var updateTimeStamp = exports.updateTimeStamp = function updateTimeStamp(timeSta
   return {
     type: UPDATE_TIME_STAMP,
     timeStamp: timeStamp
+  };
+};
+
+/***/ }),
+/* 211 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _typing_indicator_actions = __webpack_require__(212);
+
+var typingIndicatorReducer = function typingIndicatorReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+  var action = arguments[1];
+
+  //keep the original state untouchable
+  Object.freeze(state);
+  switch (action.type) {
+    case _typing_indicator_actions.UPDATE_TYPING_INDICATOR:
+      return action.boolean;
+    default:
+      return state;
+  }
+};
+
+exports.default = typingIndicatorReducer;
+
+/***/ }),
+/* 212 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var UPDATE_TYPING_INDICATOR = exports.UPDATE_TYPING_INDICATOR = "UPDATE_TYPING_INDICATOR";
+
+var updateTimeStamp = exports.updateTimeStamp = function updateTimeStamp(boolean) {
+  return {
+    type: UPDATE_TYPING_INDICATOR,
+    boolean: boolean
   };
 };
 
