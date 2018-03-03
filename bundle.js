@@ -38280,8 +38280,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var mapSTPs = function mapSTPs(_ref) {
   var entities = _ref.entities;
   return {
-    messages: entities.messages,
-    users: entities.users
+    messages: entities.messages
   };
 };
 
