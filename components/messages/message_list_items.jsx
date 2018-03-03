@@ -15,10 +15,12 @@ class MessageListItems extends React.Component {
       lastTimeStampDate = moment(lastTimeStamp.createdAt).format("YYYYMMDD");
       lastTimeStampTime = moment(lastTimeStamp.createdAt).format("HHmm");
     }
-    //show timeStamp
+    //timestamp will only show when first message
     if(lastTimeStamp === undefined
+      //or when different day
     || messageDate !== lastTimeStampDate
-    ||(messageDate === today && messageTime > (parseInt(lastTimeStampTime) + 3))){
+    //or today's message more than 2 mins from last message
+    ||(messageDate === today && messageTime > (parseInt(lastTimeStampTime) + 2))){
       if( messageDate === today){
         return moment(time).format("HH:mm");
       }else if((today - messageDate) === 1){

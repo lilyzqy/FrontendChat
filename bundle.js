@@ -38411,8 +38411,12 @@ var MessageListItems = function (_React$Component) {
         lastTimeStampDate = (0, _moment2.default)(lastTimeStamp.createdAt).format("YYYYMMDD");
         lastTimeStampTime = (0, _moment2.default)(lastTimeStamp.createdAt).format("HHmm");
       }
-      //show timeStamp
-      if (lastTimeStamp === undefined || messageDate !== lastTimeStampDate || messageDate === today && messageTime > parseInt(lastTimeStampTime) + 3) {
+      //timestamp will only show when first message
+      if (lastTimeStamp === undefined
+      //or when different day
+      || messageDate !== lastTimeStampDate
+      //or today's message more than 2 mins from last message
+      || messageDate === today && messageTime > parseInt(lastTimeStampTime) + 2) {
         if (messageDate === today) {
           return (0, _moment2.default)(time).format("HH:mm");
         } else if (today - messageDate === 1) {
