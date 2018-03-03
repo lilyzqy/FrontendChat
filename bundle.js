@@ -37738,6 +37738,10 @@ var _message_list_container = __webpack_require__(204);
 
 var _message_list_container2 = _interopRequireDefault(_message_list_container);
 
+var _typing_indicator = __webpack_require__(213);
+
+var _typing_indicator2 = _interopRequireDefault(_typing_indicator);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -37780,6 +37784,7 @@ var ChatView = function (_React$Component) {
           )
         ),
         _react2.default.createElement(_message_list_container2.default, { currentUserId: this.props.currentUserId }),
+        _react2.default.createElement(_typing_indicator2.default, null),
         _react2.default.createElement(_input_bar_container2.default, { currentUserId: this.props.currentUserId })
       );
     }
@@ -38617,6 +38622,52 @@ var updateTypingIndicator = function updateTypingIndicator(boolean) {
     boolean: boolean
   };
 };
+
+/***/ }),
+/* 213 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var TypingIndicator = function (_React$Component) {
+  _inherits(TypingIndicator, _React$Component);
+
+  function TypingIndicator() {
+    _classCallCheck(this, TypingIndicator);
+
+    return _possibleConstructorReturn(this, (TypingIndicator.__proto__ || Object.getPrototypeOf(TypingIndicator)).apply(this, arguments));
+  }
+
+  _createClass(TypingIndicator, [{
+    key: "render",
+    value: function render() {
+      return _react2.default.createElement("div", null);
+    }
+  }]);
+
+  return TypingIndicator;
+}(_react2.default.Component);
+
+exports.default = TypingIndicator;
 
 /***/ })
 /******/ ]);

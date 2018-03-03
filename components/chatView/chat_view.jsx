@@ -1,6 +1,7 @@
 import React from 'react';
 import InputBarContainer from '../input/input_bar_container';
 import MessageListContainer from '../messages/message_list_container';
+import TypingIndicator from '../typing_indicator';
 
 class ChatView extends React.Component {
   constructor(props){
@@ -17,6 +18,7 @@ class ChatView extends React.Component {
           </section>
         </header>
         <MessageListContainer currentUserId={this.props.currentUserId}/>
+        <TypingIndicator />
         <InputBarContainer currentUserId={this.props.currentUserId}/>
       </section>
     );
