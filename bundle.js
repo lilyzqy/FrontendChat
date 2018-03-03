@@ -38628,7 +38628,21 @@ Object.defineProperty(exports, "__esModule", {
 });
 var UPDATE_TYPING_INDICATOR = exports.UPDATE_TYPING_INDICATOR = "UPDATE_TYPING_INDICATOR";
 
-var updateTimeStamp = exports.updateTimeStamp = function updateTimeStamp(boolean) {
+//will be a thunk action that send message to the backend and dispatch the action that receive the message
+var patchTypingIndicator = exports.patchTypingIndicator = function patchTypingIndicator(boolean) {
+  return function (dispatch) {
+    //this promise can change into API call when backend is available.
+    new Promise(function (resolve, reject) {
+      setTimeout(function () {
+        return resolve(1);
+      }, 1000);
+    }).then(function () {
+      dispatch(updateTypingIndicator(boolean));
+    });
+  };
+};
+
+var updateTypingIndicator = function updateTypingIndicator(boolean) {
   return {
     type: UPDATE_TYPING_INDICATOR,
     boolean: boolean
