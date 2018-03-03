@@ -4,10 +4,9 @@ import MessageListItemsContainer from './message_list_items_container';
 
 class MessageList extends React.Component{
   render(){
-    console.log(this.state.lastTimeStamp);
     let messages = this.props.messages;
     let items = messages.map((message,idx)=>(
-        <MessageListItems
+        <MessageListItemsContainer
           key={idx}
           message={message}
           currentUserId={this.props.currentUserId}

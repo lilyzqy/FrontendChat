@@ -6029,7 +6029,6 @@ Object.defineProperty(exports, "__esModule", {
 //incase of type error, this will be caught instead of failing silently
 var RECEIVE_MESSAGE = exports.RECEIVE_MESSAGE = 'RECEIVE_MESSAGE';
 
-//will be a thunk action that send message to the backend and dispatch the action that receive the message
 var createMessage = exports.createMessage = function createMessage(message) {
   return function (dispatch) {
     //this promise can change into API call when backend is available.
@@ -38339,10 +38338,9 @@ var MessageList = function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
-      console.log(this.state.lastTimeStamp);
       var messages = this.props.messages;
       var items = messages.map(function (message, idx) {
-        return _react2.default.createElement(MessageListItems, {
+        return _react2.default.createElement(_message_list_items_container2.default, {
           key: idx,
           message: message,
           currentUserId: _this2.props.currentUserId,
@@ -38410,21 +38408,21 @@ var MessageListItems = function (_React$Component) {
       var today = (0, _moment2.default)().format("YYYYMMDD");
       var messageDate = (0, _moment2.default)(time).format("YYYYMMDD");
       var _props = this.props,
-          lastTimeStamp = _props.lastTimeStamp,
-          updateLastTimeStamp = _props.updateLastTimeStamp;
+          timeStamp = _props.timeStamp,
+          updateTimeStamp = _props.updateTimeStamp;
 
-      var lastTimeStampTime = (0, _moment2.default)(lastTimeStamp).format("HHmm");
-      console.log(lastTimeStampTime);
+      var timeStampTime = (0, _moment2.default)(timeStamp).format("HHmm");
+      console.log(updateTimeStamp);
       if (messageDate === today) {
-        if (lastTimeStamp === "" || lastTimeStampTime <= (0, _moment2.default)(time).format("HHmm") - 2) {
-          setTimeout(updateLastTimeStamp(time), 100);
+        if (timeStamp === "" || timeStampTime <= (0, _moment2.default)(time).format("HHmm") - 2) {
+          updateTimeStamp(time);
           return (0, _moment2.default)(time).format("HH:mm");
         } else {
           return "";
         }
       } else if (today - messageDate === 1) {
         var clock = (0, _moment2.default)(time).format("HH:mm");
-        setTimeout(updateLastTimeStamp(time), 100);
+        updateTimeStamp(time);
         // updateLastTimeStamp(time);
         return "Yesterday " + clock;
       } else if (today.slice(0, 5) === messageDate.slice(0, 5)) {
@@ -38524,6 +38522,8 @@ Object.defineProperty(exports, "__esModule", {
 
 var _reactRedux = __webpack_require__(9);
 
+var _timestamp_actions = __webpack_require__(210);
+
 var _message_list_items = __webpack_require__(206);
 
 var _message_list_items2 = _interopRequireDefault(_message_list_items);
@@ -38533,11 +38533,20 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var mapSTPs = function mapSTPs(_ref) {
   var entities = _ref.entities;
   return {
-    users: entities.users
+    users: entities.users,
+    timeStamp: entities.timeStamp
   };
 };
 
-exports.default = (0, _reactRedux.connect)(mapSTPs, undefined)(_message_list_items2.default);
+var mapDTPs = function mapDTPs(dispatch) {
+  return {
+    updateTimeStamp: function updateTimeStamp(newTimeStamp) {
+      return dispatch((0, _timestamp_actions.updateTimeStamp)(newTimeStamp));
+    }
+  };
+};
+
+exports.default = (0, _reactRedux.connect)(mapSTPs, mapDTPs)(_message_list_items2.default);
 
 /***/ }),
 /* 209 */
@@ -38628,7 +38637,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 var UPDATE_TYPING_INDICATOR = exports.UPDATE_TYPING_INDICATOR = "UPDATE_TYPING_INDICATOR";
 
-//will be a thunk action that send message to the backend and dispatch the action that receive the message
 var patchTypingIndicator = exports.patchTypingIndicator = function patchTypingIndicator(boolean) {
   return function (dispatch) {
     //this promise can change into API call when backend is available.
