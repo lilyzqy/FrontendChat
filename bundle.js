@@ -38329,6 +38329,11 @@ var MessageList = function (_React$Component) {
   }
 
   _createClass(MessageList, [{
+    key: 'componentDidUpdate',
+    value: function componentDidUpdate() {
+      this.messagesEnd.scrollIntoView({ behaviour: 'smooth' });
+    }
+  }, {
     key: 'render',
     value: function render() {
       var _this2 = this;
@@ -38342,13 +38347,12 @@ var MessageList = function (_React$Component) {
         });
       });
       return _react2.default.createElement(
-        'section',
-        { className: 'message-list' },
-        _react2.default.createElement(
-          'ul',
-          { className: 'messages-ul' },
-          items
-        )
+        'ul',
+        { className: 'messages-ul' },
+        items,
+        _react2.default.createElement('div', { ref: function ref(el) {
+            _this2.messagesEnd = el;
+          } })
       );
     }
   }]);
@@ -38443,15 +38447,15 @@ var MessageListItems = function (_React$Component) {
       var bubbleClass = void 0;
       if (this.props.currentUserId === message.authorId) {
         messageBoxClass = "message-box right";
-        bubbleClass = "right-bubble";
+        bubbleClass = "clearfix right-bubble";
       } else {
         messageBoxClass = "message-box left";
-        bubbleClass = "left-bubble";
+        bubbleClass = "clearfix left-bubble";
         profilePic = _react2.default.createElement('img', { src: author.profilePic, className: 'profile-pic' });
       }
       return _react2.default.createElement(
         'li',
-        { className: 'message-container' },
+        { className: 'clearfix message-container' },
         _react2.default.createElement(
           'p',
           { className: 'time-stamp' },
