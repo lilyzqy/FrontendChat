@@ -159,10 +159,10 @@ textarea:focus{
   align-self: flex-end;
 }
 
-.profile-pic{
+.profile-pic, .empty-profile-pic{
   display: block;
-  height: 30px;
-  width: 30px;
+  height: 25px;
+  width: 25px;
   border-radius: 15px;
   margin-right: 10px;
 }

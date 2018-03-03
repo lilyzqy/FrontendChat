@@ -38408,15 +38408,15 @@ var MessageListItems = function (_React$Component) {
       var messageDate = (0, _moment2.default)(time).format("YYYYMMDD");
       var messageTime = (0, _moment2.default)(time).format("HHmm");
       var messages = this.props.messages;
-      var lastTimeStamp = messages[messages.indexOf(message) - 1];
+      this.lastMessage = messages[messages.indexOf(message) - 1];
       var lastTimeStampDate = void 0;
       var lastTimeStampTime = void 0;
-      if (lastTimeStamp !== undefined) {
-        lastTimeStampDate = (0, _moment2.default)(lastTimeStamp.createdAt).format("YYYYMMDD");
-        lastTimeStampTime = (0, _moment2.default)(lastTimeStamp.createdAt).format("HHmm");
+      if (this.lastMessage !== undefined) {
+        lastTimeStampDate = (0, _moment2.default)(this.lastMessage.createdAt).format("YYYYMMDD");
+        lastTimeStampTime = (0, _moment2.default)(this.lastMessage.createdAt).format("HHmm");
       }
       //timestamp will only show when first message
-      if (lastTimeStamp === undefined
+      if (this.lastMessage === undefined
       //or when different day than last message
       || messageDate !== lastTimeStampDate
       //or when today's message more than 2 mins from last message
@@ -38435,15 +38435,27 @@ var MessageListItems = function (_React$Component) {
         return "";
       }
     }
+    //hide duplicated profilePic
+
+  }, {
+    key: 'handleProfilePic',
+    value: function handleProfilePic(message, timeStamp) {
+      var author = this.props.users[message.authorId];
+      //only show profilePic when showing timeStamp or first message or switch conversation
+      if (timeStamp !== "" || this.lastMessage === undefined || this.lastMessage.authorId !== message.authorId) {
+        return _react2.default.createElement('img', { src: author.profilePic, className: 'profile-pic' });
+      } else {
+        return _react2.default.createElement('div', { className: 'empty-profile-pic' });
+      }
+    }
   }, {
     key: 'render',
     value: function render() {
       var message = this.props.message;
       var body = message.body;
       var timeStamp = this.handleTimeStamp(message);
-      var author = this.props.users[message.authorId];
-      var messageBoxClass = void 0;
       var profilePic = void 0;
+      var messageBoxClass = void 0;
       var bubbleClass = void 0;
       if (this.props.currentUserId === message.authorId) {
         messageBoxClass = "message-box right";
@@ -38451,7 +38463,8 @@ var MessageListItems = function (_React$Component) {
       } else {
         messageBoxClass = "message-box left";
         bubbleClass = "clearfix left-bubble";
-        profilePic = _react2.default.createElement('img', { src: author.profilePic, className: 'profile-pic' });
+        profilePic = this.handleProfilePic(message, timeStamp);
+        // profilePic = (<img src={author.profilePic} className="profile-pic"></img>);
       }
       return _react2.default.createElement(
         'li',

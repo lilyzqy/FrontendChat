@@ -8,15 +8,15 @@ class MessageListItems extends React.Component {
     let messageDate = moment(time).format("YYYYMMDD");
     let messageTime = moment(time).format("HHmm");
     let messages= this.props.messages;
-    let lastTimeStamp = messages[messages.indexOf(message) - 1];
+    this.lastMessage= messages[messages.indexOf(message) - 1];
     let lastTimeStampDate;
     let lastTimeStampTime;
-    if(lastTimeStamp !== undefined){
-      lastTimeStampDate = moment(lastTimeStamp.createdAt).format("YYYYMMDD");
-      lastTimeStampTime = moment(lastTimeStamp.createdAt).format("HHmm");
+    if(this.lastMessage!== undefined){
+      lastTimeStampDate = moment(this.lastMessage.createdAt).format("YYYYMMDD");
+      lastTimeStampTime = moment(this.lastMessage.createdAt).format("HHmm");
     }
     //timestamp will only show when first message
-    if(lastTimeStamp === undefined
+    if(this.lastMessage=== undefined
       //or when different day than last message
     || messageDate !== lastTimeStampDate
     //or when today's message more than 2 mins from last message
@@ -35,14 +35,23 @@ class MessageListItems extends React.Component {
       return "";
     }
   }
+  //hide duplicated profilePic
+  handleProfilePic(message,timeStamp){
+    let author = this.props.users[message.authorId];
+    //only show profilePic when showing timeStamp or first message or switch conversation
+    if(timeStamp !== ""|| this.lastMessage === undefined ||this.lastMessage.authorId !== message.authorId){
+      return (<img src={author.profilePic} className="profile-pic"></img>);
+    }else{
+      return (<div className="empty-profile-pic"></div>);
+    }
+  }
 
   render(){
     let message = this.props.message;
     let body = message.body;
     let timeStamp = this.handleTimeStamp(message);
-    let author = this.props.users[message.authorId];
-    let messageBoxClass;
     let profilePic;
+    let messageBoxClass;
     let bubbleClass;
     if(this.props.currentUserId === message.authorId){
       messageBoxClass = "message-box right";
@@ -50,7 +59,8 @@ class MessageListItems extends React.Component {
     }else{
       messageBoxClass = "message-box left";
       bubbleClass = "clearfix left-bubble";
-      profilePic = (<img src={author.profilePic} className="profile-pic"></img>);
+      profilePic = this.handleProfilePic(message,timeStamp);
+      // profilePic = (<img src={author.profilePic} className="profile-pic"></img>);
     }
     return(
       <li className="clearfix message-container">
