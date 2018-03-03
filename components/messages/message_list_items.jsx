@@ -2,35 +2,42 @@ import React from 'react';
 import moment from 'moment';
 
 class MessageListItems extends React.Component {
-  handleTimeStamp(time){
+  handleTimeStamp(message){
+    let time = message.createdAt;
     let today = moment().format("YYYYMMDD");
     let messageDate = moment(time).format("YYYYMMDD");
-    let { timeStamp, updateTimeStamp } = this.props;
-    let timeStampTime = moment(timeStamp).format("HHmm");
-    console.log(updateTimeStamp);
-    if( messageDate === today){
-      if( timeStamp === "" ||timeStampTime <=  moment(time).format("HHmm") - 2){
-        updateTimeStamp(time);
-        return moment(time).format("HH:mm");
-      }else{
-        return "";
-      }
-    }else if((today - messageDate) === 1){
-      let clock = moment(time).format("HH:mm");
-      updateTimeStamp(time);
-      // updateLastTimeStamp(time);
-      return "Yesterday " + clock;
-    }else if(today.slice(0,5) === messageDate.slice(0,5)){
-      return moment(time).format("MMM DD, HH:mm");
-    }else{
-      return moment(time).format("YYYY-MM-DD, HH:mm");
+    let messageTime = moment(time).format("HHmm");
+    let messages= this.props.messages;
+    let lastTimeStamp = messages[messages.indexOf(message) - 1];
+    let lastTimeStampDate;
+    let lastTimeStampTime;
+    if(lastTimeStamp !== undefined){
+      lastTimeStampDate = moment(lastTimeStamp.createdAt).format("YYYYMMDD");
+      lastTimeStampTime = moment(lastTimeStamp.createdAt).format("HHmm");
     }
+    //show timeStamp
+    if(lastTimeStamp === undefined
+    || messageDate !== lastTimeStampDate
+    ||(messageDate === today && messageTime > (parseInt(lastTimeStampTime) + 3))){
+      if( messageDate === today){
+        return moment(time).format("HH:mm");
+      }else if((today - messageDate) === 1){
+        let clock = moment(time).format("HH:mm");
+        return "Yesterday " + clock;
+      }else if(today.slice(0,5) === messageDate.slice(0,5)){
+        return moment(time).format("MMM DD, HH:mm");
+      }else{
+        return moment(time).format("YYYY-MM-DD, HH:mm");
       }
+    }else{
+      return "";
+    }
+  }
 
   render(){
     let message = this.props.message;
     let body = message.body;
-    let timeStamp = this.handleTimeStamp(message.createdAt);
+    let timeStamp = this.handleTimeStamp(message);
     let author = this.props.users[message.authorId];
     let messageBoxClass;
     let profilePic;

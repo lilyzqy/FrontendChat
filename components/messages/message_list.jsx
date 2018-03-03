@@ -10,7 +10,6 @@ class MessageList extends React.Component{
           key={idx}
           message={message}
           currentUserId={this.props.currentUserId}
-          users={this.props.users}
           />
       ));
     return (

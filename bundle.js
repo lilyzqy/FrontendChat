@@ -6035,7 +6035,7 @@ var createMessage = exports.createMessage = function createMessage(message) {
     new Promise(function (resolve, reject) {
       setTimeout(function () {
         return resolve(1);
-      }, 1000);
+      }, 10);
     }).then(function () {
       dispatch(receiveMessage(message));
     });
@@ -38338,8 +38338,7 @@ var MessageList = function (_React$Component) {
         return _react2.default.createElement(_message_list_items_container2.default, {
           key: idx,
           message: message,
-          currentUserId: _this2.props.currentUserId,
-          users: _this2.props.users
+          currentUserId: _this2.props.currentUserId
         });
       });
       return _react2.default.createElement(
@@ -38399,31 +38398,33 @@ var MessageListItems = function (_React$Component) {
 
   _createClass(MessageListItems, [{
     key: 'handleTimeStamp',
-    value: function handleTimeStamp(time) {
+    value: function handleTimeStamp(message) {
+      var time = message.createdAt;
       var today = (0, _moment2.default)().format("YYYYMMDD");
       var messageDate = (0, _moment2.default)(time).format("YYYYMMDD");
-      var _props = this.props,
-          timeStamp = _props.timeStamp,
-          updateTimeStamp = _props.updateTimeStamp;
-
-      var timeStampTime = (0, _moment2.default)(timeStamp).format("HHmm");
-      console.log(updateTimeStamp);
-      if (messageDate === today) {
-        if (timeStamp === "" || timeStampTime <= (0, _moment2.default)(time).format("HHmm") - 2) {
-          updateTimeStamp(time);
+      var messageTime = (0, _moment2.default)(time).format("HHmm");
+      var messages = this.props.messages;
+      var lastTimeStamp = messages[messages.indexOf(message) - 1];
+      var lastTimeStampDate = void 0;
+      var lastTimeStampTime = void 0;
+      if (lastTimeStamp !== undefined) {
+        lastTimeStampDate = (0, _moment2.default)(lastTimeStamp.createdAt).format("YYYYMMDD");
+        lastTimeStampTime = (0, _moment2.default)(lastTimeStamp.createdAt).format("HHmm");
+      }
+      //show timeStamp
+      if (lastTimeStamp === undefined || messageDate !== lastTimeStampDate || messageDate === today && messageTime > parseInt(lastTimeStampTime) + 3) {
+        if (messageDate === today) {
           return (0, _moment2.default)(time).format("HH:mm");
+        } else if (today - messageDate === 1) {
+          var clock = (0, _moment2.default)(time).format("HH:mm");
+          return "Yesterday " + clock;
+        } else if (today.slice(0, 5) === messageDate.slice(0, 5)) {
+          return (0, _moment2.default)(time).format("MMM DD, HH:mm");
         } else {
-          return "";
+          return (0, _moment2.default)(time).format("YYYY-MM-DD, HH:mm");
         }
-      } else if (today - messageDate === 1) {
-        var clock = (0, _moment2.default)(time).format("HH:mm");
-        updateTimeStamp(time);
-        // updateLastTimeStamp(time);
-        return "Yesterday " + clock;
-      } else if (today.slice(0, 5) === messageDate.slice(0, 5)) {
-        return (0, _moment2.default)(time).format("MMM DD, HH:mm");
       } else {
-        return (0, _moment2.default)(time).format("YYYY-MM-DD, HH:mm");
+        return "";
       }
     }
   }, {
@@ -38431,7 +38432,7 @@ var MessageListItems = function (_React$Component) {
     value: function render() {
       var message = this.props.message;
       var body = message.body;
-      var timeStamp = this.handleTimeStamp(message.createdAt);
+      var timeStamp = this.handleTimeStamp(message);
       var author = this.props.users[message.authorId];
       var messageBoxClass = void 0;
       var profilePic = void 0;

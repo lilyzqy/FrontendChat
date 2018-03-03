@@ -4,7 +4,7 @@ export const RECEIVE_MESSAGE = 'RECEIVE_MESSAGE';
 export const createMessage = message => dispatch => {
   //this promise can change into API call when backend is available.
   new Promise(function(resolve, reject) {
-  setTimeout(() => resolve(1), 1000);
+  setTimeout(() => resolve(1), 10);
 }).then(()=>{
     dispatch(receiveMessage(message));
   });
