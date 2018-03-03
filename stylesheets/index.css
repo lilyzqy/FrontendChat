@@ -126,9 +126,11 @@ textarea:focus{
 
 .message-box{
   display: flex;
+  max-width: 80%
 }
 
 .message-container{
+  width: 100%;
   display: flex;
   flex-direction: column;
 }
@@ -154,6 +156,7 @@ textarea:focus{
 }
 
 .left-bubble{
+  max-width: 90%;
   background-color:white;
   border-radius: 25px;
   box-shadow: 0 10px 10px 0 rgba(81, 6, 14, 0.05);
@@ -168,6 +171,7 @@ textarea:focus{
 .message-body{
   font-size: 14px;
   margin: 10px;
+  word-wrap: break-word;
 }
 
 .time-stamp{
