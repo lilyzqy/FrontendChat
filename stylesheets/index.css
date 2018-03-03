@@ -143,17 +143,17 @@ textarea:focus{
 
 .message-container{
   width: 100%;
-  display: flex;
-  flex-direction: column;
 }
 
 .left{
+  float: left;
   flex-direction: row;
   margin-left: 20px;
 }
 
 
 .right{
+  float: right;
   flex-direction: column;
   margin-right: 20px;
   align-self: flex-end;
@@ -168,7 +168,7 @@ textarea:focus{
 }
 
 .left-bubble{
-  display: block; 
+  display: block;
   min-height: 37px;
   max-width: 100%;
   background-color:white;
@@ -190,7 +190,7 @@ textarea:focus{
 
 .time-stamp{
   font-size: 10px;
-  align-self: center;
+  text-align: center;
   color: #d1bdbc;
   margin-top: 5px;
   margin-bottom: 5px;
