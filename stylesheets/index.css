@@ -57,10 +57,10 @@ textarea:focus{
 }
 
 .chat-header{
-  text-align: center;
+  /* text-align: center; */
   background-color: #fff7f7;
   height: 50px;
-  vertical-align: middle;
+  /* vertical-align: middle; */
 }
 
 .chat-receiver{
@@ -197,6 +197,9 @@ textarea:focus{
   margin-bottom: 5px;
 }
 
+.typing-indicator{
+  height: 25px;
+}
 
 
 

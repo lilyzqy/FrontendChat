@@ -1,17 +1,17 @@
-export const UPDATE_TYPING_INDICATOR = "UPDATE_TYPING_INDICATOR";
+export const RECEIVE_TYPING_INDICATOR = "UPDATE_TYPING_INDICATOR";
 
 
-export const patchTypingIndicator = boolean => dispatch => {
+export const updateTypingIndicator = indicator => dispatch => {
   //this promise can change into API call when backend is available.
   new Promise(function(resolve, reject) {
-  setTimeout(() => resolve(1), 1000);
+  setTimeout(() => resolve(1), 10);
 }).then(()=>{
-    dispatch(updateTypingIndicator(boolean));
+    dispatch(receiveTypingIndicator(indicator));
   });
 };
 
 
-const updateTypingIndicator = boolean =>({
-  type: UPDATE_TYPING_INDICATOR,
-  boolean
+const receiveTypingIndicator = indicator =>({
+  type: RECEIVE_TYPING_INDICATOR,
+  indicator
 });

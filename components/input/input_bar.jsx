@@ -16,6 +16,9 @@ class InputBar extends React.Component {
 
 //update the state (for message object) when typing in the input bar
   handleTyping(){
+    if(document.activeElement === this.myInput){
+      this.props.updateTypingIndicator({[this.currentUserId]:true});
+    }
     return (e)=>{
       this.setState({body:e.currentTarget.value});
     };
