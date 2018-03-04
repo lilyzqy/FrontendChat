@@ -39,12 +39,12 @@ class MessageListItems extends React.Component {
     }
   }
   //hide duplicated profilePic
-  handleProfilePic(message,timeStamp){
+  handleProfilePic(message,timeStampBody){
     let messages= this.props.messages;
     let lastMessage= messages[messages.indexOf(message) - 1];
     let author = this.props.users[message.authorId];
     //only show profilePic when showing timeStamp or first message or switch conversation
-    if(timeStamp !== ""|| lastMessage === undefined ||lastMessage.authorId !== message.authorId){
+    if(timeStampBody !== ""|| lastMessage === undefined ||lastMessage.authorId !== message.authorId){
       return (<img src={author.profilePic} className="profile-pic"></img>);
     }else{
       return (<div className="empty-profile-pic"></div>);
@@ -54,7 +54,11 @@ class MessageListItems extends React.Component {
   render(){
     let message = this.props.message;
     let body = message.body;
-    let timeStamp = this.handleTimeStamp(message);
+    let timeStampBody = this.handleTimeStamp(message);
+    let timeStamp;
+    if(timeStampBody !== ""){
+      timeStamp = (<p className="time-stamp">{timeStampBody}</p>);
+    }
     let profilePic;
     let messageBoxClass;
     let bubbleClass;
@@ -65,11 +69,11 @@ class MessageListItems extends React.Component {
     }else{
       messageBoxClass = "message-box left";
       bubbleClass = "clearfix left-bubble";
-      profilePic = this.handleProfilePic(message,timeStamp);
+      profilePic = this.handleProfilePic(message,timeStampBody);
     }
     return(
       <li className="clearfix message-container">
-        <p className="time-stamp">{timeStamp}</p>
+        {timeStamp}
         <div className={messageBoxClass}>
           {profilePic}
           <div className={bubbleClass}>

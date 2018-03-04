@@ -41565,12 +41565,12 @@ var MessageListItems = function (_React$Component) {
 
   }, {
     key: 'handleProfilePic',
-    value: function handleProfilePic(message, timeStamp) {
+    value: function handleProfilePic(message, timeStampBody) {
       var messages = this.props.messages;
       var lastMessage = messages[messages.indexOf(message) - 1];
       var author = this.props.users[message.authorId];
       //only show profilePic when showing timeStamp or first message or switch conversation
-      if (timeStamp !== "" || lastMessage === undefined || lastMessage.authorId !== message.authorId) {
+      if (timeStampBody !== "" || lastMessage === undefined || lastMessage.authorId !== message.authorId) {
         return _react2.default.createElement('img', { src: author.profilePic, className: 'profile-pic' });
       } else {
         return _react2.default.createElement('div', { className: 'empty-profile-pic' });
@@ -41581,7 +41581,15 @@ var MessageListItems = function (_React$Component) {
     value: function render() {
       var message = this.props.message;
       var body = message.body;
-      var timeStamp = this.handleTimeStamp(message);
+      var timeStampBody = this.handleTimeStamp(message);
+      var timeStamp = void 0;
+      if (timeStampBody !== "") {
+        timeStamp = _react2.default.createElement(
+          'p',
+          { className: 'time-stamp' },
+          timeStampBody
+        );
+      }
       var profilePic = void 0;
       var messageBoxClass = void 0;
       var bubbleClass = void 0;
@@ -41592,16 +41600,12 @@ var MessageListItems = function (_React$Component) {
       } else {
         messageBoxClass = "message-box left";
         bubbleClass = "clearfix left-bubble";
-        profilePic = this.handleProfilePic(message, timeStamp);
+        profilePic = this.handleProfilePic(message, timeStampBody);
       }
       return _react2.default.createElement(
         'li',
         { className: 'clearfix message-container' },
-        _react2.default.createElement(
-          'p',
-          { className: 'time-stamp' },
-          timeStamp
-        ),
+        timeStamp,
         _react2.default.createElement(
           'div',
           { className: messageBoxClass },
