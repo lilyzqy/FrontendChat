@@ -37875,12 +37875,6 @@ var InputBar = function (_React$Component) {
     value: function componentDidMount() {
       this.setState({ authorId: this.props.currentUserId });
     }
-  }, {
-    key: '_getTimeStamp',
-    value: function _getTimeStamp() {
-      var timeStamp = (0, _moment2.default)().format();
-      this.setState({ createdAt: timeStamp });
-    }
 
     //update the state (for message object) when typing in the input bar
 
@@ -37902,9 +37896,12 @@ var InputBar = function (_React$Component) {
       var _this3 = this;
 
       return function (e) {
-        _this3._getTimeStamp();
-        _this3.props.createMessage(_this3.state);
-        e.currentTarget.parentElement.reset();
+        //avoid empty message
+        if (_this3.state.body.length !== 0) {
+          _this3.props.createMessage(_this3.state);
+          e.currentTarget.parentElement.reset();
+          _this3.setState({ body: "" });
+        }
       };
     }
 
@@ -37915,11 +37912,17 @@ var InputBar = function (_React$Component) {
     value: function _waitForEnter(e) {
       if (e.code === "Enter") {
         var body = this.state.body;
-        //remove the return note from the message body
-        this.setState({ body: body.slice(0, body.length - 1) });
-        this._getTimeStamp();
-        this.props.createMessage(this.state);
-        this.myInput.parentElement.reset();
+        var returnNote = body.slice(body.length - 1);
+        var removedReturnNoteBody = body.slice(0, body.length - 1);
+        console.log(returnNote);
+        //avoid empty message
+        if (body.length !== 1 && removedReturnNoteBody !== returnNote) {
+          //remove the return note from the message body
+          this.setState({ body: removedReturnNoteBody });
+          this.props.createMessage(this.state);
+          this.myInput.parentElement.reset();
+          this.setState({ body: "" });
+        }
       }
     }
 

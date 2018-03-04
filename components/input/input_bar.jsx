@@ -14,11 +14,6 @@ class InputBar extends React.Component {
     this.setState({authorId:this.props.currentUserId});
   }
 
-  _getTimeStamp(){
-    let timeStamp = moment().format();
-    this.setState({createdAt: timeStamp});
-  }
-
 //update the state (for message object) when typing in the input bar
   handleTyping(){
     return (e)=>{
@@ -29,9 +24,12 @@ class InputBar extends React.Component {
 //send message when click on the send icon
   handleSubmit(){
     return(e)=>{
-      this._getTimeStamp();
-      this.props.createMessage(this.state);
-      e.currentTarget.parentElement.reset();
+      //avoid empty message
+      if(this.state.body.length !== 0){
+        this.props.createMessage(this.state);
+        e.currentTarget.parentElement.reset();
+        this.setState({body:""});
+      }
     };
   }
 
@@ -39,11 +37,17 @@ class InputBar extends React.Component {
   _waitForEnter(e){
     if(e.code === "Enter"){
       let body = this.state.body;
-      //remove the return note from the message body
-      this.setState({body:body.slice(0, body.length - 1)});
-      this._getTimeStamp();
-      this.props.createMessage(this.state);
-      this.myInput.parentElement.reset();
+      let returnNote = body.slice(body.length - 1);
+      let removedReturnNoteBody = body.slice(0, body.length - 1);
+      console.log(returnNote);
+      //avoid empty message
+      if(body.length !== 1 && removedReturnNoteBody !== returnNote){
+        //remove the return note from the message body
+        this.setState({body:removedReturnNoteBody});
+        this.props.createMessage(this.state);
+        this.myInput.parentElement.reset();
+        this.setState({body:""});
+      }
     }
   }
 
