@@ -4,9 +4,13 @@ import { updateTypingIndicator } from '../../actions/typing_indicator_actions';
 
 import InputBar from './input_bar';
 
+const mapSTPs = ({entities}, ownProps) =>({
+  typingIndicator:entities.typingIndicator[ownProps.currentUserId]
+});
+
 const mapDTPs = dispatch =>({
   createMessage: (message) => dispatch(createMessage(message)),
   updateTypingIndicator: (indicator) => dispatch(updateTypingIndicator(indicator))
 });
 
-export default connect(undefined, mapDTPs)(InputBar);
+export default connect(mapSTPs, mapDTPs)(InputBar);

@@ -37818,6 +37818,13 @@ var _input_bar2 = _interopRequireDefault(_input_bar);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var mapSTPs = function mapSTPs(_ref, ownProps) {
+  var entities = _ref.entities;
+  return {
+    typingIndicator: entities.typingIndicator[ownProps.currentUserId]
+  };
+};
+
 var mapDTPs = function mapDTPs(dispatch) {
   return {
     createMessage: function createMessage(message) {
@@ -37829,7 +37836,7 @@ var mapDTPs = function mapDTPs(dispatch) {
   };
 };
 
-exports.default = (0, _reactRedux.connect)(undefined, mapDTPs)(_input_bar2.default);
+exports.default = (0, _reactRedux.connect)(mapSTPs, mapDTPs)(_input_bar2.default);
 
 /***/ }),
 /* 201 */
@@ -37882,6 +37889,22 @@ var InputBar = function (_React$Component) {
     value: function componentDidMount() {
       this.setState({ authorId: this.props.currentUserId });
     }
+  }, {
+    key: 'componentDidUpdate',
+    value: function componentDidUpdate() {
+      if (this.state.body.length !== 0) {
+        console.log("typing");
+        this.toggleTypingIndicator(true);
+      } else if (this.state.body.length === 0) {
+        console.log("not typing");
+        this.toggleTypingIndicator(false);
+      }
+    }
+  }, {
+    key: 'toggleTypingIndicator',
+    value: function toggleTypingIndicator(boolean) {
+      this.props.updateTypingIndicator(_defineProperty({}, this.props.currentUserId, boolean));
+    }
 
     //update the state (for message object) when typing in the input bar
 
@@ -37890,9 +37913,6 @@ var InputBar = function (_React$Component) {
     value: function handleTyping() {
       var _this2 = this;
 
-      if (document.activeElement === this.myInput) {
-        this.props.updateTypingIndicator(_defineProperty({}, this.currentUserId, true));
-      }
       return function (e) {
         _this2.setState({ body: e.currentTarget.value });
       };
@@ -37924,7 +37944,6 @@ var InputBar = function (_React$Component) {
         var body = this.state.body;
         var returnNote = body.slice(body.length - 1);
         var removedReturnNoteBody = body.slice(0, body.length - 1);
-        console.log(returnNote);
         //avoid empty message
         if (body.length !== 1 && removedReturnNoteBody !== returnNote) {
           //remove the return note from the message body
@@ -37958,6 +37977,7 @@ var InputBar = function (_React$Component) {
       var _this5 = this;
 
       return function () {
+        _this5.toggleTypingIndicator(false);
         _this5.myInput.removeEventListener("keyup", _this5._waitForEnter);
       };
     }

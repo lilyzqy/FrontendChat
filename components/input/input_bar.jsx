@@ -14,11 +14,22 @@ class InputBar extends React.Component {
     this.setState({authorId:this.props.currentUserId});
   }
 
+  componentDidUpdate(){
+    if(this.state.body.length !== 0){
+      console.log("typing");
+      this.toggleTypingIndicator(true);
+    }else if(this.state.body.length === 0){
+      console.log("not typing");
+      this.toggleTypingIndicator(false);
+    }
+  }
+
+  toggleTypingIndicator(boolean){
+    this.props.updateTypingIndicator({[this.props.currentUserId]:boolean});
+  }
+
 //update the state (for message object) when typing in the input bar
   handleTyping(){
-    if(document.activeElement === this.myInput){
-      this.props.updateTypingIndicator({[this.currentUserId]:true});
-    }
     return (e)=>{
       this.setState({body:e.currentTarget.value});
     };
@@ -42,7 +53,6 @@ class InputBar extends React.Component {
       let body = this.state.body;
       let returnNote = body.slice(body.length - 1);
       let removedReturnNoteBody = body.slice(0, body.length - 1);
-      console.log(returnNote);
       //avoid empty message
       if(body.length !== 1 && removedReturnNoteBody !== returnNote){
         //remove the return note from the message body
@@ -66,6 +76,7 @@ class InputBar extends React.Component {
 //remove listener to avoid fire both input bars
   onBlur(){
     return()=>{
+      this.toggleTypingIndicator(false);
       this.myInput.removeEventListener("keyup",this._waitForEnter);
     };
   }
