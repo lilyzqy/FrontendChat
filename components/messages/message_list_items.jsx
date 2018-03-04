@@ -8,18 +8,18 @@ class MessageListItems extends React.Component {
     let messageDate = moment(time).format("YYYYMMDD");
     let messageTime = moment(time).format("HHmm");
     let messages= this.props.messages;
-    this.lastMessage= messages[messages.indexOf(message) - 1];
+    let lastMessage= messages[messages.indexOf(message) - 1];
     let lastTimeStampDate;
     let lastTimeStampTime;
-    if(this.lastMessage!== undefined){
-      lastTimeStampDate = moment(this.lastMessage.createdAt).format("YYYYMMDD");
-      lastTimeStampTime = moment(this.lastMessage.createdAt).format("HHmm");
+    if(lastMessage!== undefined){
+      lastTimeStampDate = moment(lastMessage.createdAt).format("YYYYMMDD");
+      lastTimeStampTime = moment(lastMessage.createdAt).format("HHmm");
     }
     //timestamp will only show when first message
-    if(this.lastMessage=== undefined
+    if(lastMessage=== undefined
       //or when different day than last message
     || messageDate !== lastTimeStampDate
-    //or when today's message more than 2 mins from last message
+    //or when today's message and more than 2 mins from last message
     ||(messageDate === today && messageTime >= (parseInt(lastTimeStampTime) + 2))){
       if( messageDate === today){
         return moment(time).format("HH:mm");
@@ -40,9 +40,11 @@ class MessageListItems extends React.Component {
   }
   //hide duplicated profilePic
   handleProfilePic(message,timeStamp){
+    let messages= this.props.messages;
+    let lastMessage= messages[messages.indexOf(message) - 1];
     let author = this.props.users[message.authorId];
     //only show profilePic when showing timeStamp or first message or switch conversation
-    if(timeStamp !== ""|| this.lastMessage === undefined ||this.lastMessage.authorId !== message.authorId){
+    if(timeStamp !== ""|| lastMessage === undefined ||lastMessage.authorId !== message.authorId){
       return (<img src={author.profilePic} className="profile-pic"></img>);
     }else{
       return (<div className="empty-profile-pic"></div>);

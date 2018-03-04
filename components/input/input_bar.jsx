@@ -41,6 +41,7 @@ class InputBar extends React.Component {
     return(e)=>{
       //avoid empty message
       if(this.state.body.length !== 0){
+        this.setState({createdAt:moment().format()});
         this.props.createMessage(this.state);
         e.currentTarget.parentElement.reset();
         this.setState({body:""});
@@ -58,6 +59,7 @@ class InputBar extends React.Component {
       if(body.length !== 1 && removedReturnNoteBody !== returnNote){
         //remove the return note from the message body
         this.setState({body:removedReturnNoteBody});
+        this.setState({createdAt:moment().format()});
         this.props.createMessage(this.state);
         this.myInput.parentElement.reset();
         this.setState({body:""});
