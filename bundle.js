@@ -40753,8 +40753,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var App = function App() {
   //currentUserId will be available at the state in realapp
   return _react2.default.createElement(
-    'div',
-    { className: 'screen' },
+    'main',
+    { className: 'app' },
     _react2.default.createElement(_chat_view_container2.default, { currentUserId: '1', conversationId: '1' }),
     _react2.default.createElement(_chat_view_container2.default, { currentUserId: '2', conversationId: '2' })
   );
@@ -40821,6 +40821,10 @@ var _typing_indicator_container = __webpack_require__(306);
 
 var _typing_indicator_container2 = _interopRequireDefault(_typing_indicator_container);
 
+var _side_bar = __webpack_require__(309);
+
+var _side_bar2 = _interopRequireDefault(_side_bar);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -40843,28 +40847,33 @@ var ChatView = function (_React$Component) {
     value: function render() {
       return _react2.default.createElement(
         'section',
-        { className: 'chat-view' },
+        { className: 'screen' },
+        _react2.default.createElement(_side_bar2.default, null),
         _react2.default.createElement(
-          'header',
-          { className: 'chat-header' },
+          'section',
+          { className: 'screen-right' },
           _react2.default.createElement(
-            'section',
-            { className: 'chat-receiver' },
+            'header',
+            { className: 'chat-header' },
             _react2.default.createElement(
-              'p',
-              { className: 'to' },
-              'To:'
-            ),
-            _react2.default.createElement(
-              'p',
-              { className: 'conversation-title' },
-              this.props.conversation.title
+              'section',
+              { className: 'chat-receiver' },
+              _react2.default.createElement(
+                'p',
+                { className: 'chat-to' },
+                'To:'
+              ),
+              _react2.default.createElement(
+                'p',
+                { className: 'conversation-title' },
+                this.props.conversation.title
+              )
             )
-          )
-        ),
-        _react2.default.createElement(_message_list_container2.default, { currentUserId: this.props.currentUserId }),
-        _react2.default.createElement(_typing_indicator_container2.default, { currentUserId: this.props.currentUserId }),
-        _react2.default.createElement(_input_bar_container2.default, { currentUserId: this.props.currentUserId })
+          ),
+          _react2.default.createElement(_message_list_container2.default, { currentUserId: this.props.currentUserId }),
+          _react2.default.createElement(_typing_indicator_container2.default, { currentUserId: this.props.currentUserId }),
+          _react2.default.createElement(_input_bar_container2.default, { currentUserId: this.props.currentUserId })
+        )
       );
     }
   }]);
@@ -41758,6 +41767,52 @@ var thunk = createThunkMiddleware();
 thunk.withExtraArgument = createThunkMiddleware;
 
 exports['default'] = thunk;
+
+/***/ }),
+/* 309 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var SideBar = function (_React$Component) {
+  _inherits(SideBar, _React$Component);
+
+  function SideBar() {
+    _classCallCheck(this, SideBar);
+
+    return _possibleConstructorReturn(this, (SideBar.__proto__ || Object.getPrototypeOf(SideBar)).apply(this, arguments));
+  }
+
+  _createClass(SideBar, [{
+    key: "render",
+    value: function render() {
+      return _react2.default.createElement("section", { className: "screen-left" });
+    }
+  }]);
+
+  return SideBar;
+}(_react2.default.Component);
+
+exports.default = SideBar;
 
 /***/ })
 /******/ ]);

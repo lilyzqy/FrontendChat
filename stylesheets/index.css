@@ -37,7 +37,7 @@ textarea:focus{
 }
 
 /* background */
-.screen{
+.app{
   display: flex;
   justify-content: space-around;
   align-items: stretch;
@@ -46,7 +46,7 @@ textarea:focus{
 }
 
 /* chat view */
-.chat-view{
+.screen{
   overflow: hidden;
   background-color: #fcfcfc;
   height: 90vh;
@@ -54,9 +54,20 @@ textarea:focus{
   margin-top: 20px;
   border-radius: 5px;
   box-shadow: 0 4px 8px 0 rgba(81, 6, 14, 0.2), 0 6px 20px 0 rgba(81, 6, 14, 0.19);
-  flex-direction: column;
+  display: flex;
+  flex-direction: row;
+}
+
+.screen-left{
+  width: 260px;
+}
+
+
+.screen-right{
   justify-content: space-between;
   display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 .chat-header{
@@ -74,7 +85,7 @@ textarea:focus{
   font-size: 14px;
 }
 
-.to{
+.chat-to{
   color: #d1bdbc;
 }
 
@@ -180,6 +191,7 @@ textarea:focus{
 }
 
 .right-bubble{
+  max-width: 100%;
   min-height: 37px;
   box-shadow: 0 10px 10px 0 rgba(81, 6, 14, 0.1);
   border-radius: 25px;
@@ -210,9 +222,6 @@ textarea:focus{
   margin-left: 20px;
   color: #A18684;
 }
-
-
-
 
 
 
