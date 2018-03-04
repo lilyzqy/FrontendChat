@@ -5,7 +5,7 @@ import { updateTypingIndicator } from '../../actions/typing_indicator_actions';
 import InputBar from './input_bar';
 
 const mapSTPs = ({entities}, ownProps) =>({
-  typingIndicator:entities.typingIndicator[ownProps.currentUserId]
+  typingIndicator:entities.typingIndicators[ownProps.currentUserId]
 });
 
 const mapDTPs = dispatch =>({

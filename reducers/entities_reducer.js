@@ -8,5 +8,5 @@ export default combineReducers({
   users: userReducer,
   messages: messageReducer,
   conversations:conversationReducer,
-  typingIndicator:typingIndicatorReducer
+  typingIndicators:typingIndicatorReducer
 });

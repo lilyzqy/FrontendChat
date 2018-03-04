@@ -201,6 +201,11 @@ textarea:focus{
   height: 25px;
 }
 
+.indicator-showing{
+  font-size: 14px;
+  margin-left: 20px;
+  color: #A18684
+}
 
 
 

@@ -17,12 +17,10 @@ class MessageList extends React.Component{
           />
       ));
     return (
-
-        <ul className="messages-ul">
-          {items}
-          <div ref={el => { this.messagesEnd = el; }} />
-        </ul>
-
+      <ul className="messages-ul">
+        {items}
+        <div ref={el => { this.messagesEnd = el; }} />
+      </ul>
     );
   }
 }

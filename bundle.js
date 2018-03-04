@@ -36146,7 +36146,7 @@ exports.default = (0, _redux.combineReducers)({
   users: _user_reducer2.default,
   messages: _message_reducer2.default,
   conversations: _conversation_reducer2.default,
-  typingIndicator: _typing_indicator_reducer2.default
+  typingIndicators: _typing_indicator_reducer2.default
 });
 
 /***/ }),
@@ -37738,9 +37738,9 @@ var _message_list_container = __webpack_require__(204);
 
 var _message_list_container2 = _interopRequireDefault(_message_list_container);
 
-var _typing_indicator = __webpack_require__(213);
+var _typing_indicator_container = __webpack_require__(311);
 
-var _typing_indicator2 = _interopRequireDefault(_typing_indicator);
+var _typing_indicator_container2 = _interopRequireDefault(_typing_indicator_container);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -37784,7 +37784,7 @@ var ChatView = function (_React$Component) {
           )
         ),
         _react2.default.createElement(_message_list_container2.default, { currentUserId: this.props.currentUserId }),
-        _react2.default.createElement(_typing_indicator2.default, null),
+        _react2.default.createElement(_typing_indicator_container2.default, { currentUserId: this.props.currentUserId }),
         _react2.default.createElement(_input_bar_container2.default, { currentUserId: this.props.currentUserId })
       );
     }
@@ -37821,7 +37821,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var mapSTPs = function mapSTPs(_ref, ownProps) {
   var entities = _ref.entities;
   return {
-    typingIndicator: entities.typingIndicator[ownProps.currentUserId]
+    typingIndicator: entities.typingIndicators[ownProps.currentUserId]
   };
 };
 
@@ -37889,14 +37889,15 @@ var InputBar = function (_React$Component) {
     value: function componentDidMount() {
       this.setState({ authorId: this.props.currentUserId });
     }
+
+    //handle updating typing indicator(also onBlur function)
+
   }, {
     key: 'componentDidUpdate',
     value: function componentDidUpdate() {
-      if (this.state.body.length !== 0) {
-        console.log("typing");
+      if (this.state.body.length !== 0 && !this.props.typingIndicator && document.activeElement === this.myInput) {
         this.toggleTypingIndicator(true);
-      } else if (this.state.body.length === 0) {
-        console.log("not typing");
+      } else if (this.state.body.length === 0 && this.props.typingIndicator) {
         this.toggleTypingIndicator(false);
       }
     }
@@ -37977,7 +37978,9 @@ var InputBar = function (_React$Component) {
       var _this5 = this;
 
       return function () {
-        _this5.toggleTypingIndicator(false);
+        if (_this5.props.typingIndicator) {
+          _this5.toggleTypingIndicator(false);
+        }
         _this5.myInput.removeEventListener("keyup", _this5._waitForEnter);
       };
     }
@@ -38665,52 +38668,7 @@ var receiveTypingIndicator = function receiveTypingIndicator(indicator) {
 };
 
 /***/ }),
-/* 213 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(2);
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var TypingIndicator = function (_React$Component) {
-  _inherits(TypingIndicator, _React$Component);
-
-  function TypingIndicator() {
-    _classCallCheck(this, TypingIndicator);
-
-    return _possibleConstructorReturn(this, (TypingIndicator.__proto__ || Object.getPrototypeOf(TypingIndicator)).apply(this, arguments));
-  }
-
-  _createClass(TypingIndicator, [{
-    key: "render",
-    value: function render() {
-      return _react2.default.createElement("div", { className: "typing-indicator" });
-    }
-  }]);
-
-  return TypingIndicator;
-}(_react2.default.Component);
-
-exports.default = TypingIndicator;
-
-/***/ }),
+/* 213 */,
 /* 214 */,
 /* 215 */
 /***/ (function(module, exports) {
@@ -41692,6 +41650,107 @@ function isIterateeCall(value, index, object) {
 
 module.exports = isIterateeCall;
 
+
+/***/ }),
+/* 311 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _reactRedux = __webpack_require__(9);
+
+var _typing_indicator = __webpack_require__(312);
+
+var _typing_indicator2 = _interopRequireDefault(_typing_indicator);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mapSTPs = function mapSTPs(_ref, ownProps) {
+  var entities = _ref.entities;
+  return {
+    typingIndicators: entities.typingIndicators,
+    memberIds: entities.conversations[ownProps.currentUserId].memberIds,
+    users: entities.users
+  };
+};
+
+exports.default = (0, _reactRedux.connect)(mapSTPs, undefined)(_typing_indicator2.default);
+
+/***/ }),
+/* 312 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var TypingIndicator = function (_React$Component) {
+  _inherits(TypingIndicator, _React$Component);
+
+  function TypingIndicator() {
+    _classCallCheck(this, TypingIndicator);
+
+    return _possibleConstructorReturn(this, (TypingIndicator.__proto__ || Object.getPrototypeOf(TypingIndicator)).apply(this, arguments));
+  }
+
+  _createClass(TypingIndicator, [{
+    key: "render",
+    value: function render() {
+      var _props = this.props,
+          typingIndicators = _props.typingIndicators,
+          memberIds = _props.memberIds,
+          users = _props.users;
+
+      var indicatorShowing = memberIds.map(function (id, idx) {
+        if (typingIndicators[id]) {
+          return _react2.default.createElement(
+            "li",
+            { className: "indicator-showing",
+              key: idx
+            },
+            users[id].username,
+            " is typing... "
+          );
+        }
+      });
+      return _react2.default.createElement(
+        "div",
+        { className: "typing-indicator" },
+        _react2.default.createElement(
+          "ul",
+          null,
+          indicatorShowing.slice(0, 4)
+        )
+      );
+    }
+  }]);
+
+  return TypingIndicator;
+}(_react2.default.Component);
+
+exports.default = TypingIndicator;
 
 /***/ })
 /******/ ]);
