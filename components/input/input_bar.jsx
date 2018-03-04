@@ -14,7 +14,7 @@ class InputBar extends React.Component {
     this.setState({authorId:this.props.currentUserId});
   }
 
-//handle updating typing indicator(also onBlur function)
+//handle updating typing indicator(also inside onBlur function)
   componentDidUpdate(){
     if(this.state.body.length !== 0
     && !this.props.typingIndicator
@@ -48,7 +48,7 @@ class InputBar extends React.Component {
     };
   }
 
-//eventlistener function
+//eventlistener function, send message when "Enter" key is pressed
   _waitForEnter(e){
     if(e.code === "Enter"){
       let body = this.state.body;
@@ -65,7 +65,7 @@ class InputBar extends React.Component {
     }
   }
 
-//listen to key when input bar is focused
+//listen to key press when input bar is focused
   onFocus(){
     return()=>{
       //this.myInput is the ref of textarea,
@@ -74,7 +74,7 @@ class InputBar extends React.Component {
     };
   }
 
-//remove listener to avoid fire both input bars
+//remove listener to avoid fire both input bar components
   onBlur(){
     return()=>{
       if(this.props.typingIndicator){

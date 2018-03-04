@@ -37890,7 +37890,7 @@ var InputBar = function (_React$Component) {
       this.setState({ authorId: this.props.currentUserId });
     }
 
-    //handle updating typing indicator(also onBlur function)
+    //handle updating typing indicator(also inside onBlur function)
 
   }, {
     key: 'componentDidUpdate',
@@ -37936,7 +37936,7 @@ var InputBar = function (_React$Component) {
       };
     }
 
-    //eventlistener function
+    //eventlistener function, send message when "Enter" key is pressed
 
   }, {
     key: '_waitForEnter',
@@ -37956,7 +37956,7 @@ var InputBar = function (_React$Component) {
       }
     }
 
-    //listen to key when input bar is focused
+    //listen to key press when input bar is focused
 
   }, {
     key: 'onFocus',
@@ -37970,7 +37970,7 @@ var InputBar = function (_React$Component) {
       };
     }
 
-    //remove listener to avoid fire both input bars
+    //remove listener to avoid fire both input bar components
 
   }, {
     key: 'onBlur',
@@ -38464,11 +38464,14 @@ var MessageListItems = function (_React$Component) {
       || messageDate === today && messageTime >= parseInt(lastTimeStampTime) + 2) {
         if (messageDate === today) {
           return (0, _moment2.default)(time).format("HH:mm");
+          //yesterday's message
         } else if (today - messageDate === 1) {
           var clock = (0, _moment2.default)(time).format("HH:mm");
           return "Yesterday " + clock;
+          //same year message
         } else if (today.slice(0, 5) === messageDate.slice(0, 5)) {
           return (0, _moment2.default)(time).format("MMM DD, HH:mm");
+          //different year message
         } else {
           return (0, _moment2.default)(time).format("YYYY-MM-DD, HH:mm");
         }
@@ -38498,6 +38501,7 @@ var MessageListItems = function (_React$Component) {
       var profilePic = void 0;
       var messageBoxClass = void 0;
       var bubbleClass = void 0;
+      //switch message bubble
       if (this.props.currentUserId === message.authorId) {
         messageBoxClass = "message-box right";
         bubbleClass = "clearfix right-bubble";
@@ -38505,7 +38509,6 @@ var MessageListItems = function (_React$Component) {
         messageBoxClass = "message-box left";
         bubbleClass = "clearfix left-bubble";
         profilePic = this.handleProfilePic(message, timeStamp);
-        // profilePic = (<img src={author.profilePic} className="profile-pic"></img>);
       }
       return _react2.default.createElement(
         'li',

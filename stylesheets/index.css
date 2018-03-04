@@ -1,3 +1,4 @@
+/* reset browser setting */
 ul{
   list-style: none;
   -webkit-margin-before: 0;
@@ -35,6 +36,7 @@ textarea:focus{
     visibility: hidden;
 }
 
+/* background */
 .screen{
   display: flex;
   justify-content: space-around;
@@ -43,6 +45,7 @@ textarea:focus{
   height: 100vh
 }
 
+/* chat view */
 .chat-view{
   overflow: hidden;
   background-color: #fcfcfc;
@@ -79,6 +82,7 @@ textarea:focus{
   margin-left: 8px;
 }
 
+/* input bar */
 .input-bar-container{
   overflow: hidden;
   border: 1px solid #f7edee;
@@ -122,6 +126,7 @@ textarea:focus{
   font-size: 14px;
 }
 
+/* message */
 .message-list{
   height: 100%;
   display: flex;
@@ -197,6 +202,7 @@ textarea:focus{
   margin-bottom: 5px;
 }
 
+/* typing indicator */
 .typing-indicator{
   height: 25px;
 }
