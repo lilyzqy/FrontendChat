@@ -3,6 +3,7 @@ import moment from 'moment';
 
 class ConversationList extends React.Component{
   render(){
+    //in real app last message info will nested in conversation slice of state
     let { conversation, lastMessage} = this.props;
     let lastTime = lastMessage.createdAt;
     let showLastTime;

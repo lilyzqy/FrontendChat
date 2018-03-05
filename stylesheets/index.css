@@ -47,7 +47,7 @@ textarea:focus{
   height: 100vh
 }
 
-/* chat view */
+/* chat screen */
 .screen{
   overflow: hidden;
   background-color: #fcfcfc;
@@ -60,10 +60,11 @@ textarea:focus{
   flex-direction: row;
 }
 
+/* left side bar */
 .screen-left{
   overflow: hidden;
   float: left;
-  width: 40%;
+  width: 35%;
   border-right: 1px solid #f7edee
 }
 
@@ -129,6 +130,7 @@ textarea:focus{
   margin-top: 4px;
 }
 
+/* right section */
 .screen-right{
   overflow: hidden;
   float: left;
@@ -148,7 +150,6 @@ textarea:focus{
   position: absolute;
   margin-top: 17px;
   margin-left: 20px;
-  /* font-size: 14px; */
 }
 
 .chat-to{

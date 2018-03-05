@@ -1,17 +1,44 @@
-#Intro
-This app is
+## Preview
+![alt text](.docs/ScreenShot.png "ScreenShot 1")
 
-#Set up instruction
-pull from repo
-npm install
-open index.html
+## Highlights
+* Real-time typing indicator
+* Only show selective timestamp for better UX
+* For consecutive messages from the same user, the profile picture is only shown once for better UX
+* Sidebar showing all current conversations with preview
+* Auto scrolling in input bar when typing multiple rows
+* Send messages with either 'ENTER' or 'Send' button
 
-#Highlights
+```
+if(lastMessage=== undefined
+  //or when different day than last message
+|| messageDate !== lastTimeStampDate
+//or when today's message and more than 2 mins from last message
+||(messageDate === today && messageTime >= (parseInt(lastTimeStampTime) + 2))){
+  if( messageDate === today){
+    return moment(time).format("HH:mm");
+    //yesterday's message
+  }else if((today - messageDate) === 1){
+    let clock = moment(time).format("HH:mm");
+    return "Yesterday " + clock;
+    //same year message
+  }else if(today.slice(0,5) === messageDate.slice(0,5)){
+    return moment(time).format("MMM DD, HH:mm");
+    //different year message
+  }else{
+    return moment(time).format("YYYY-MM-DD, HH:mm");
+  }
+}else{
+  return "";
+}
+```
 
-duplicated timestamp and profile picture is hided
-typing indicator
+## Set up instruction
+* Download this repo
+* In Terminal: npm install
+* Open index.html
 
-#Future
-group conversation
-handle image message, voice message, Emoji, attachment
-search message bar
+## Next steps
+* handle group conversations
+* handle different type of message(image, voice, Emoji, attachment)
+* search bar

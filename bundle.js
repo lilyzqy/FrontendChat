@@ -41902,6 +41902,7 @@ var ConversationList = function (_React$Component) {
   _createClass(ConversationList, [{
     key: 'render',
     value: function render() {
+      //in real app last message info will nested in conversation slice of state
       var _props = this.props,
           conversation = _props.conversation,
           lastMessage = _props.lastMessage;
