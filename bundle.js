@@ -41805,7 +41805,19 @@ var SideBar = function (_React$Component) {
   _createClass(SideBar, [{
     key: "render",
     value: function render() {
-      return _react2.default.createElement("section", { className: "screen-left" });
+      return _react2.default.createElement(
+        "section",
+        { className: "screen-left" },
+        _react2.default.createElement(
+          "header",
+          { className: "app-header" },
+          _react2.default.createElement(
+            "h2",
+            { className: "app-name" },
+            "ChatChat"
+          )
+        )
+      );
     }
   }]);
 
