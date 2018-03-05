@@ -1,10 +1,11 @@
 /* reset browser setting */
-ul, h2{
+ul, li, h2, h5{
   list-style: none;
   -webkit-margin-before: 0;
   -webkit-margin-after: 0;
   -webkit-padding-start: 0;
   font-weight: normal;
+  font-size: 0;
 }
 
 html{
@@ -62,7 +63,7 @@ textarea:focus{
 .screen-left{
   overflow: hidden;
   float: left;
-  width: 30%;
+  width: 40%;
   border-right: 1px solid #f7edee
 }
 
@@ -76,11 +77,56 @@ textarea:focus{
 }
 
 .app-name{
-  width: 40%;
+  width: 35%;
   margin: 0 auto;
   font-size: 16px;
 }
 
+.conversation{
+  height: 70px;
+  border-bottom: 1px solid #f7edee;
+  display: flex;
+  flex-direction: row;
+  padding-top: 20px;
+  margin-left: 20px;
+}
+
+.conversation-pic{
+  display: block;
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+}
+
+.conversation-info{
+  display: block;
+  width: calc(100% - 70px);
+  margin-left: 10px;
+  height: calc(100% - 10px);
+}
+
+.conversation-info-top{
+  display: flex;
+  justify-content: space-between;
+}
+
+.conversation-to{
+  font-size: 14px;
+}
+
+.conversation-last-time{
+  color: #d1bdbc;
+  font-size: 12px;
+}
+
+.conversation-info-bottom{
+  font-size: 12px;
+  color: #d1bdbc;
+  width: 100%;
+  height: calc(100% - 20px);
+  word-wrap: break-word;
+  overflow: -webkit-paged-x;
+}
 
 .screen-right{
   overflow: hidden;
@@ -88,7 +134,7 @@ textarea:focus{
   justify-content: space-between;
   display: flex;
   flex-direction: column;
-  width: 70%;
+  width: 65%;
 }
 
 .chat-header{
@@ -101,7 +147,7 @@ textarea:focus{
   position: absolute;
   margin-top: 17px;
   margin-left: 20px;
-  font-size: 14px;
+  /* font-size: 14px; */
 }
 
 .chat-to{
@@ -110,6 +156,10 @@ textarea:focus{
 
 .conversation-title{
   margin-left: 8px;
+}
+
+.chat-to, .conversation-title{
+  font-size: 14px;
 }
 
 /* input bar */

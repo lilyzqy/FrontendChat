@@ -1,4 +1,4 @@
-import { connect } from 'react';
+import { connect } from 'react-redux';
 
 import ConversationList from './conversation_list';
 

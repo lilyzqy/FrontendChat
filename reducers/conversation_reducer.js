@@ -2,12 +2,12 @@
 const INITIALSTATE={
   1:{
     title:"Rob",
-    conversationPic:"",
+    conversationPic:"http://res.cloudinary.com/dreamhousesf/image/upload/v1519947436/IMG_9757_2_rimvrw.jpg",
     memberIds:[2]
   },
   2:{
     title:"Laura",
-    conversationPic:"",
+    conversationPic:"http://res.cloudinary.com/dreamhousesf/image/upload/v1519947536/224084626-girl-profile-picture_2_v5ypsg.jpg",
     memberIds:[1]
   }
 };

@@ -37119,12 +37119,12 @@ Object.defineProperty(exports, "__esModule", {
 var INITIALSTATE = {
   1: {
     title: "Rob",
-    conversationPic: "",
+    conversationPic: "http://res.cloudinary.com/dreamhousesf/image/upload/v1519947436/IMG_9757_2_rimvrw.jpg",
     memberIds: [2]
   },
   2: {
     title: "Laura",
-    conversationPic: "",
+    conversationPic: "http://res.cloudinary.com/dreamhousesf/image/upload/v1519947536/224084626-girl-profile-picture_2_v5ypsg.jpg",
     memberIds: [1]
   }
 };
@@ -41844,7 +41844,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _react = __webpack_require__(2);
+var _reactRedux = __webpack_require__(6);
 
 var _conversation_list = __webpack_require__(312);
 
@@ -41859,7 +41859,7 @@ var mapSTPs = function mapSTPs(_ref) {
   };
 };
 
-exports.default = (0, _react.connect)(mapSTPs)(_conversation_list2.default);
+exports.default = (0, _reactRedux.connect)(mapSTPs)(_conversation_list2.default);
 
 /***/ }),
 /* 312 */
@@ -41877,6 +41877,10 @@ var _createClass = function () { function defineProperties(target, props) { for 
 var _react = __webpack_require__(2);
 
 var _react2 = _interopRequireDefault(_react);
+
+var _moment = __webpack_require__(0);
+
+var _moment2 = _interopRequireDefault(_moment);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -41898,7 +41902,45 @@ var ConversationList = function (_React$Component) {
   _createClass(ConversationList, [{
     key: 'render',
     value: function render() {
-      return _react2.default.createElement('ul', null);
+      var _props = this.props,
+          conversation = _props.conversation,
+          lastMessage = _props.lastMessage;
+
+      var lastTime = lastMessage.createdAt;
+      var showLastTime = void 0;
+      if ((0, _moment2.default)().format("YYYYMMDD") === (0, _moment2.default)(lastTime).format("YYYYMMDD")) {
+        showLastTime = (0, _moment2.default)(lastTime).format("HH:mm");
+      } else {
+        showLastTime = (0, _moment2.default)(lastTime).format("MM/DD/YY");
+      }
+      return _react2.default.createElement(
+        'li',
+        { className: 'conversation' },
+        _react2.default.createElement('img', { className: 'conversation-pic', src: conversation.conversationPic }),
+        _react2.default.createElement(
+          'div',
+          { className: 'conversation-info' },
+          _react2.default.createElement(
+            'div',
+            { className: 'conversation-info-top' },
+            _react2.default.createElement(
+              'h5',
+              { className: 'conversation-to' },
+              conversation.title
+            ),
+            _react2.default.createElement(
+              'h5',
+              { className: 'conversation-last-time' },
+              showLastTime
+            )
+          ),
+          _react2.default.createElement(
+            'p',
+            { className: 'conversation-info-bottom' },
+            lastMessage.body
+          )
+        )
+      );
     }
   }]);
 
