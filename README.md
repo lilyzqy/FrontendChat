@@ -10,6 +10,7 @@
 * Send messages with either 'ENTER' or 'Send' button
 
 ```
+//timestamp will only show when first message
 if(lastMessage=== undefined
   //or when different day than last message
 || messageDate !== lastTimeStampDate
