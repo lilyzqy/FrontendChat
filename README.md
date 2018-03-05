@@ -1,5 +1,5 @@
 ## Preview
-![alt text](.docs/ScreenShot.png "ScreenShot 1")
+![alt text](https://github.com/lilyzqy/FrontendChat/blob/master/docs/ScreenShot.png)
 
 ## Highlights
 * Real-time typing indicator
