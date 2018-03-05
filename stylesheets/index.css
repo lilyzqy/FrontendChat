@@ -126,6 +126,7 @@ textarea:focus{
   height: calc(100% - 20px);
   word-wrap: break-word;
   overflow: -webkit-paged-x;
+  margin-top: 4px;
 }
 
 .screen-right{
