@@ -13,7 +13,7 @@ class ChatView extends React.Component {
   render(){
     return (
       <section className="screen">
-        <SideBar />
+        <SideBar conversation={this.props.conversation}/>
         <section className="screen-right">
           <header className="chat-header">
             <section className="chat-receiver">

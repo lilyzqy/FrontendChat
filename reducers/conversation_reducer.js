@@ -1,3 +1,4 @@
+//in real chat app, conversations would only contain what belongs to currentUser
 const INITIALSTATE={
   1:{
     title:"Rob",

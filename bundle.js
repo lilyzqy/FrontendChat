@@ -37115,6 +37115,7 @@ exports.default = messageReducer;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+//in real chat app, conversations would only contain what belongs to currentUser
 var INITIALSTATE = {
   1: {
     title: "Rob",
@@ -40848,7 +40849,7 @@ var ChatView = function (_React$Component) {
       return _react2.default.createElement(
         'section',
         { className: 'screen' },
-        _react2.default.createElement(_side_bar2.default, null),
+        _react2.default.createElement(_side_bar2.default, { conversation: this.props.conversation }),
         _react2.default.createElement(
           'section',
           { className: 'screen-right' },
@@ -41582,7 +41583,7 @@ var MessageListItems = function (_React$Component) {
       if (timeStampBody !== "" || lastMessage === undefined || lastMessage.authorId !== message.authorId) {
         return _react2.default.createElement('img', { src: author.profilePic, className: 'profile-pic' });
       } else {
-        return _react2.default.createElement('div', { className: 'empty-profile-pic' });
+        return undefined;
       }
     }
   }, {
@@ -41785,6 +41786,10 @@ var _react = __webpack_require__(2);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _conversation_list_container = __webpack_require__(311);
+
+var _conversation_list_container2 = _interopRequireDefault(_conversation_list_container);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -41803,20 +41808,21 @@ var SideBar = function (_React$Component) {
   }
 
   _createClass(SideBar, [{
-    key: "render",
+    key: 'render',
     value: function render() {
       return _react2.default.createElement(
-        "section",
-        { className: "screen-left" },
+        'section',
+        { className: 'screen-left' },
         _react2.default.createElement(
-          "header",
-          { className: "app-header" },
+          'header',
+          { className: 'app-header' },
           _react2.default.createElement(
-            "h2",
-            { className: "app-name" },
-            "ChatChat"
+            'h2',
+            { className: 'app-name' },
+            'ChatChat'
           )
-        )
+        ),
+        _react2.default.createElement(_conversation_list_container2.default, { conversation: this.props.conversation })
       );
     }
   }]);
@@ -41825,6 +41831,81 @@ var SideBar = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = SideBar;
+
+/***/ }),
+/* 310 */,
+/* 311 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(2);
+
+var _conversation_list = __webpack_require__(312);
+
+var _conversation_list2 = _interopRequireDefault(_conversation_list);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mapSTPs = function mapSTPs(_ref) {
+  var entities = _ref.entities;
+  return {
+    lastMessage: entities.messages[entities.messages.length - 1]
+  };
+};
+
+exports.default = (0, _react.connect)(mapSTPs)(_conversation_list2.default);
+
+/***/ }),
+/* 312 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var ConversationList = function (_React$Component) {
+  _inherits(ConversationList, _React$Component);
+
+  function ConversationList() {
+    _classCallCheck(this, ConversationList);
+
+    return _possibleConstructorReturn(this, (ConversationList.__proto__ || Object.getPrototypeOf(ConversationList)).apply(this, arguments));
+  }
+
+  _createClass(ConversationList, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement('ul', null);
+    }
+  }]);
+
+  return ConversationList;
+}(_react2.default.Component);
+
+exports.default = ConversationList;
 
 /***/ })
 /******/ ]);

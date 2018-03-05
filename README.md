@@ -14,3 +14,4 @@ typing indicator
 #Future
 group conversation
 handle image message, voice message, Emoji, attachment
+search message bar

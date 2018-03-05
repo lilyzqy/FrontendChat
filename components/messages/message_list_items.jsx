@@ -47,7 +47,7 @@ class MessageListItems extends React.Component {
     if(timeStampBody !== ""|| lastMessage === undefined ||lastMessage.authorId !== message.authorId){
       return (<img src={author.profilePic} className="profile-pic"></img>);
     }else{
-      return (<div className="empty-profile-pic"></div>);
+      return undefined;
     }
   }
 

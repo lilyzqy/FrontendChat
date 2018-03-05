@@ -72,7 +72,6 @@ textarea:focus{
   height: 40px;
   display: flex;
   padding-top: 12px;
-  /* padding-left: 58px; */
   box-sizing: border-box;
 }
 
@@ -160,19 +159,19 @@ textarea:focus{
 /* message */
 
 .messages-ul{
-  /* margin-top: 10px; */
   height: 100%;
   display: flex;
   flex-direction: column;
   width: 100%;
   overflow-y:auto;
+  overflow-x: hidden;
 }
 
 
 .message-box{
   display: flex;
   max-width: 70%;
-  margin-top: 5px;
+  margin-top: 18px;
 }
 
 .message-container{
@@ -188,12 +187,11 @@ textarea:focus{
 
 .right{
   float: right;
-  /* flex-direction: column; */
   margin-right: 20px;
   align-self: flex-end;
 }
 
-.profile-pic, .empty-profile-pic{
+.profile-pic{
   display: block;
   height: 25px;
   width: 25px;
@@ -204,11 +202,16 @@ textarea:focus{
 
 .left-bubble{
   display: block;
+  margin-left: 35px;
   min-height: 37px;
-  max-width: 100%;
+  width: calc(100% - 35px);
   background-color:white;
   border-radius: 25px;
   box-shadow: 0 10px 10px 0 rgba(81, 6, 14, 0.05);
+}
+
+.message-box .profile-pic+.left-bubble{
+  margin-left: 0;
 }
 
 .right-bubble{
@@ -229,8 +232,7 @@ textarea:focus{
   font-size: 10px;
   text-align: center;
   color: #d1bdbc;
-  margin-top: 10px;
-  margin-bottom: 5px;
+  margin-top: 18px;
 }
 
 /* typing indicator */
