@@ -36,8 +36,10 @@ if(lastMessage=== undefined
 
 ## Set up instruction
 * Download this repo
-* In Terminal: npm install
-* Open index.html
+* In Terminal:
+  * npm install
+  * Open index.html
+  * Webpack --watch
 
 ## Next steps
 * handle group conversations
