@@ -70,8 +70,7 @@ class InputBar extends React.Component {
 //listen to key press when input bar is focused
   onFocus(){
     return()=>{
-      //this.myInput is the ref of textarea,
-      //using ref instead of id is for differentiate the reuseable components
+      //listen to every keypress
       this.myInput.addEventListener("keyup",this._waitForEnter);
     };
   }

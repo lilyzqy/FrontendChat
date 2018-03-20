@@ -278,6 +278,8 @@ textarea:focus{
   font-size: 14px;
   margin: 10px;
   word-wrap: break-word;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 .time-stamp{

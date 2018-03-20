@@ -41084,8 +41084,7 @@ var InputBar = function (_React$Component) {
       var _this4 = this;
 
       return function () {
-        //this.myInput is the ref of textarea,
-        //using ref instead of id is for differentiate the reuseable components
+        //listen to every keypress
         _this4.myInput.addEventListener("keyup", _this4._waitForEnter);
       };
     }
