@@ -1,5 +1,5 @@
 import React from 'react';
-import ChatViewContainer from './chatView/chat_view_container';
+import ChatViewContainer from './chat_view/chat_view_container';
 
 const App = () => {
   //currentUserId will be available at the state in realapp
