@@ -16,7 +16,7 @@ if(lastMessage=== undefined
 || messageDate !== lastTimeStampDate
 //or when today's message and more than 2 mins from last message
 ||(messageDate === today && messageTime >= (parseInt(lastTimeStampTime) + 2))){
-  if( messageDate === today){
+  if(messageDate === today){
     return moment(time).format("HH:mm");
     //yesterday's message
   }else if((today - messageDate) === 1){
