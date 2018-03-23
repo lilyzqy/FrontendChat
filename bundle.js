@@ -41631,11 +41631,14 @@ var MessageListItems = function (_React$Component) {
       var profilePic = void 0;
       var messageBoxClass = void 0;
       var bubbleClass = void 0;
+      var messageArrow = void 0;
       //switch message bubble
       if (this.props.currentUserId === message.authorId) {
+        messageArrow = "left-arrow";
         messageBoxClass = "message-box right";
         bubbleClass = "clearfix right-bubble";
       } else {
+        messageArrow = "right-arrow";
         messageBoxClass = "message-box left";
         bubbleClass = "clearfix left-bubble";
         profilePic = this.handleProfilePic(message, timeStampBody);
@@ -41648,6 +41651,7 @@ var MessageListItems = function (_React$Component) {
           'div',
           { className: messageBoxClass },
           profilePic,
+          _react2.default.createElement('div', { className: messageArrow }),
           _react2.default.createElement(
             'div',
             { className: bubbleClass },

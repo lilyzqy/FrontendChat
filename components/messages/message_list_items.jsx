@@ -62,11 +62,14 @@ class MessageListItems extends React.Component {
     let profilePic;
     let messageBoxClass;
     let bubbleClass;
+    let messageArrow;
     //switch message bubble
     if(this.props.currentUserId === message.authorId){
+      messageArrow = "left-arrow";
       messageBoxClass = "message-box right";
       bubbleClass = "clearfix right-bubble";
     }else{
+      messageArrow = "right-arrow";
       messageBoxClass = "message-box left";
       bubbleClass = "clearfix left-bubble";
       profilePic = this.handleProfilePic(message,timeStampBody);
@@ -76,6 +79,7 @@ class MessageListItems extends React.Component {
         {timeStamp}
         <div className={messageBoxClass}>
           {profilePic}
+          <div className={messageArrow}></div>
           <div className={bubbleClass}>
             <p className="message-body">{body}</p>
           </div>
