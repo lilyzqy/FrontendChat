@@ -292,9 +292,9 @@ textarea:focus{
     position: absolute;
     width: 0;
     height: 0;
-    left: 235px;
+    left: 234px;
     border: 10px solid;
-    border-color:  red transparent transparent red;
+    border-color:  #F25656 transparent transparent #F25656;
 }
 
 .message-body{
