@@ -261,17 +261,17 @@ textarea:focus{
   border-radius: 15px;
   box-shadow: 0 10px 10px 0 rgba(81, 6, 14, 0.05);
   transition: width 1s, height 1s;
+  position: relative;
 }
 
-.left-bubble :before{
-  content: " "
+.left-bubble:before{
+  content: " ";
   position: absolute;
   width: 0;
   height: 0;
-  left: 282px;
-  top: 113px;
+  left: -10px;
   border: 10px solid;
-  border-color:  red red transparent transparent;
+  border-color:  white white transparent transparent;
 }
 
 .message-box .profile-pic+.left-bubble{
@@ -283,18 +283,18 @@ textarea:focus{
   min-height: 37px;
   box-shadow: 0 10px 10px 0 rgba(81, 6, 14, 0.1);
   border-radius: 15px;
-  background-color: #F25656
+  background-color: #F25656;
+  position: relative;
 }
 
-.right-bubble :after{
-    content: " "
+.right-bubble:before{
+    content: " ";
     position: absolute;
     width: 0;
     height: 0;
-    left: 282px;
-    top: 113px;
+    left: 235px;
     border: 10px solid;
-    border-color:  red red transparent transparent;
+    border-color:  red transparent transparent red;
 }
 
 .message-body{
