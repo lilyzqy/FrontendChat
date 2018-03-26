@@ -270,7 +270,7 @@ textarea:focus{
   width: 0;
   height: 0;
   left: -10px;
-  border: 10px solid;
+  border: 12px solid;
   border-color:  white white transparent transparent;
 }
 
@@ -292,8 +292,8 @@ textarea:focus{
     position: absolute;
     width: 0;
     height: 0;
-    left: 234px;
-    border: 10px solid;
+    right: -10px;
+    border: 12px solid;
     border-color:  #F25656 transparent transparent #F25656;
 }
 
