@@ -282,9 +282,10 @@ textarea:focus{
   max-width: 100%;
   min-height: 37px;
   box-shadow: 0 10px 10px 0 rgba(81, 6, 14, 0.1);
-  border-radius: 15px;
+  border-radius: 20px;
   background-color: #F25656;
   position: relative;
+  z-index: 1;
 }
 
 .right-bubble:before{
@@ -292,9 +293,23 @@ textarea:focus{
     position: absolute;
     width: 0;
     height: 0;
-    right: -10px;
-    border: 12px solid;
-    border-color:  #F25656 transparent transparent #F25656;
+    right: -22px;
+    border: 35px solid;
+    border-radius: 20px;
+    z-index: -1;
+    border-color:  #F25656 transparent transparent transparent;
+}
+
+.right-bubble:after{
+  content: " ";
+  position: absolute;
+  width: 0;
+  height: 0;
+  right: -22px;
+  border: 35px solid;
+  border-radius: 20px;
+  z-index: -1;
+  border-color:  #F25656 transparent transparent transparent;
 }
 
 .message-body{
