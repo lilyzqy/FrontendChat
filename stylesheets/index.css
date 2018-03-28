@@ -243,7 +243,7 @@ textarea:focus{
   width: 0;
   height: 0;
   left: 5px;
-  bottom: 2px;
+  top: 5px;
   z-index: 1;
   border: 15px solid;
   border-radius: 10px;
@@ -255,7 +255,7 @@ textarea:focus{
   border-radius: 30px;
   border-color: white transparent transparent transparent;
   z-index: 0;
-  bottom: -33px;
+  top: 0px;
   left: 13px;
 }
 
@@ -273,7 +273,7 @@ textarea:focus{
   width: 0;
   height: 0;
   right: -30px;
-  bottom: 2px;
+  top: 5px;
   z-index: 2;
   border: 15px solid;
   border-radius: 10px;
