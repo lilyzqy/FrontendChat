@@ -241,6 +241,7 @@ textarea:focus{
   float: right;
   margin-right: 20px;
   align-self: flex-end;
+  position: relative;
 }
 
 .right:before{
@@ -248,8 +249,7 @@ textarea:focus{
   position: absolute;
   width: 0;
   height: 0;
-  right: 29px;
-  bottom:185px;
+  right: 244px;
   border: 15px solid;
   border-radius: 10px;
   border-color:  grey transparent transparent grey;
