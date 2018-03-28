@@ -234,6 +234,7 @@ textarea:focus{
   float: left;
   flex-direction: row;
   margin-left: 20px;
+  position: relative;
 }
 
 
@@ -249,10 +250,12 @@ textarea:focus{
   position: absolute;
   width: 0;
   height: 0;
-  right: 244px;
+  right: -30px;
+  bottom: 2px;
+  z-index: 2;
   border: 15px solid;
   border-radius: 10px;
-  border-color:  grey transparent transparent grey;
+  border-color:  #fcfcfc transparent transparent #fcfcfc;
 }
 
 .profile-pic{
