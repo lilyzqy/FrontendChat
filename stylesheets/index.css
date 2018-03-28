@@ -237,17 +237,28 @@ textarea:focus{
   position: relative;
 }
 
-.left:before,.left:after{
+.right{
+  float: right;
+  margin-right: 20px;
+  align-self: flex-end;
+  position: relative;
+}
+
+/* bubble tail */
+.left::before,.left::after,.right::before,.right::after{
   content: " ";
   position: absolute;
   width: 0;
   height: 0;
-  left: 5px;
-  top: 5px;
   z-index: 1;
   border: 15px solid;
   border-radius: 10px;
   border-color:  #fcfcfc #fcfcfc transparent transparent;
+}
+
+.left::after{
+  left: 5px;
+  top: 5px;
 }
 
 .left::before{
@@ -259,25 +270,21 @@ textarea:focus{
   left: 13px;
 }
 
-
-.right{
-  float: right;
-  margin-right: 20px;
-  align-self: flex-end;
-  position: relative;
-}
-
 .right:before{
-  content: " ";
-  position: absolute;
-  width: 0;
-  height: 0;
   right: -30px;
   top: 5px;
   z-index: 2;
   border: 15px solid;
   border-radius: 10px;
   border-color:  #fcfcfc transparent transparent #fcfcfc;
+}
+
+.right:after{
+    right: -22px;
+    border: 35px solid;
+    border-radius: 30px;
+    z-index: 0;
+    border-color:  #F25656 transparent transparent transparent;
 }
 
 .profile-pic{
@@ -302,16 +309,6 @@ textarea:focus{
   position: relative;
 }
 
-/* .left-bubble:before{
-  content: " ";
-  position: absolute;
-  width: 0;
-  height: 0;
-  left: -10px;
-  border: 12px solid;
-  border-color:  white white transparent transparent;
-} */
-
 .message-box .profile-pic+.left-bubble{
   margin-left: 0;
 }
@@ -324,18 +321,6 @@ textarea:focus{
   background-color: #F25656;
   position: relative;
   z-index: 1;
-}
-
-.right-bubble:before{
-    content: " ";
-    position: absolute;
-    width: 0;
-    height: 0;
-    right: -22px;
-    border: 35px solid;
-    border-radius: 30px;
-    z-index: -1;
-    border-color:  #F25656 transparent transparent transparent;
 }
 
 .message-body{
