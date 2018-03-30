@@ -41019,6 +41019,7 @@ var InputBar = function (_React$Component) {
         //avoid empty message
         if (_this3.state.body.length !== 0) {
           _this3.setState({ createdAt: (0, _moment2.default)().format() });
+          //when backend server is pluged in, here will be replaced by socket emit
           _this3.props.createMessage(_this3.state);
           e.currentTarget.parentElement.reset();
           _this3.setState({ body: "" });
@@ -41434,6 +41435,7 @@ var MessageList = function (_React$Component) {
   _createClass(MessageList, [{
     key: 'componentDidUpdate',
     value: function componentDidUpdate() {
+      // listener for socket here 
       this.messagesEnd.scrollIntoView({ behaviour: 'smooth' });
     }
   }, {

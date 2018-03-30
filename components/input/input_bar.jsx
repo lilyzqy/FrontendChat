@@ -42,6 +42,7 @@ class InputBar extends React.Component {
       //avoid empty message
       if(this.state.body.length !== 0){
         this.setState({createdAt:moment().format()});
+        //when backend server is pluged in, here will be replaced by socket emit
         this.props.createMessage(this.state);
         e.currentTarget.parentElement.reset();
         this.setState({body:""});

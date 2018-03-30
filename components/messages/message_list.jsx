@@ -4,6 +4,7 @@ import MessageListItemsContainer from './message_list_items_container';
 
 class MessageList extends React.Component{
   componentDidUpdate(){
+    // listener for socket here 
     this.messagesEnd.scrollIntoView({behaviour: 'smooth'});
   }
 
