@@ -9,6 +9,11 @@ const INITIALSTATE={
     title:"Laura",
     conversationPic:"http://res.cloudinary.com/dreamhousesf/image/upload/v1519947536/224084626-girl-profile-picture_2_v5ypsg.jpg",
     memberIds:[1]
+  },
+  3:{
+    title:"Lily",
+    conversationPic:"",
+    memberIds:[1]
   }
 };
 
