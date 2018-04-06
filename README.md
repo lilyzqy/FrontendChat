@@ -36,10 +36,10 @@ if(lastMessage=== undefined
 
 ## Set up instruction
 * Download this repo
-* In Terminal:
-  * npm install
-  * Open index.html
-  * Webpack --watch
+* CLI:
+  * `npm install ` --install node modules
+  * `open index.html` -- open on browser
+  * `webpack` -- run `webpack --watch` under the hood, any changes made in file will be up to date when refresh the browser
 
 ## Next steps
 * handle group conversations
