@@ -39,7 +39,7 @@ if(lastMessage=== undefined
 * CLI:
   * `npm install ` --install node modules
   * `open index.html` -- open on browser
-  * `webpack` -- run `webpack --watch` under the hood, any changes made in file will be up to date when refresh the browser
+  * `npm run webpack` -- it's `webpack --watch` under the hood, any changes made in file will be up to date when refresh the browser
 
 ## Next steps
 * handle group conversations
