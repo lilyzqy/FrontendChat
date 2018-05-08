@@ -187,6 +187,10 @@ textarea:focus{
   font-size: 11px;
 }
 
+.input-bar:focus{
+  outline: 0.5px solid #A18684
+}
+
 .send-button{
   margin-top: 6px;
   margin-right: 9px;
